@@ -1,0 +1,238 @@
+<style lang="less">
+page{
+   background-color: #FFFFFF;
+}
+.container {
+  background-color: #FFFFFF;
+} 
+/** 底部结算 **/
+.bottom{
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    bottom: -1px;
+    z-index: 99;
+    background: #FFFFFF;
+    border: 1px solid #FFFFFF;
+}
+.choseAll{
+  float:left;
+  height:50%;
+  border-radius:50px;
+  margin-left:10px;
+  margin-top:10px;
+  font-size:18px;
+  color:#c94e71;
+}
+.bottom .bottom-right{
+    float: right;
+    color: #3c3c3c;
+}
+.bottom .bottom-right .piece{
+    float: left;
+    margin-right: 10px;
+    height: 50px;
+    line-height: 50px;
+}
+.piece text{
+  font-size:13px;
+}
+.piece_num {
+    display: inline-block;
+    padding: 0 10px;
+    font-weight: 700;
+    font-size: 17px;
+    font-family: tohoma,arial;
+}
+.totalMoney {
+  margin-right:5px;
+    float: left;
+    height: 50px;
+    line-height: 50px;
+}
+.totalMoney text{
+  font-size:13px;
+}
+.money{
+  color:red;
+}
+.calBtn {
+    float: left;
+}
+.calBtn text{
+    display: block;
+    width: 80px;
+    height: 50px;
+    color: #fff;
+    background: #c94e71;
+    cursor: not-allowed;
+    font-size: 17px;
+    letter-spacing: 5px;
+    text-decoration: none;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 2px;
+} 
+</style>
+<template>
+<view class="container">  
+         <view class="top">
+         </view>
+        <view class="goods">
+          <repeat for="{{list}}" key="index" index="index" item="item">
+            <shoppingCarItem :item='item'></shoppingCarItem>
+         </repeat>
+        </view>
+         <view class="bottom">
+            <view class="choseAll">
+              <radio @tap="choseAll" value="全选" checked="{{checkAll}}">
+                全选
+              </radio>
+            </view>
+            <view class="bottom-right">
+              <view class="piece">
+                  <text>已选商品 </text>
+                  <text class="piece_num">{{ piece }}</text>
+                   <text> 件</text>
+              </view>
+              <view class="totalMoney">
+                <text>共计 : </text>
+                <text class="money">￥ {{ totalMoney }}</text>
+              </view>
+              <view class="calBtn" @tap="accounts">
+                <text>结算</text>
+              </view>
+            </view>
+         </view>
+</view>
+</template>
+<script>
+  import wepy from 'wepy'
+  import ShoppingCarItem from '../components/shoppingCarItem'
+  import request from '../utils/request.js'
+  export default class ShoppingCar extends wepy.page {
+     config = {
+      navigationBarTitleText: '购物车'
+    }
+    components = {
+        shoppingCarItem:ShoppingCarItem
+    }
+
+    globalData = {
+    }
+
+    data = {
+      totalMoney : '0',
+      piece : '0',
+      list :[] ,
+      checkAll : false
+    }
+
+    methods = {
+      accounts(e){
+        var that = this
+        // that.list.forEach(function(i,index){
+        //   if(i.check)
+        //     i.check = false;
+        // });
+      },
+      choseAll(e){
+        // !this.checked = 是否全选
+        var list = this.list; 
+        if(!this.checkAll){// 全选
+          this.checkAll = true;
+          list.forEach(function(i,index){
+            i.check = true;
+          });
+        }else{ // 取消全选
+          this.checkAll = false;
+          list.forEach(function(i,index){
+            i.check = false;
+          });
+        }
+        this.list = list;
+        this.$apply();
+       }
+    }
+
+    watch  = { // 监听
+        list(newValue,oldValue){
+          var a = 0;
+          var b = 0;
+          newValue.forEach(function(i,index){
+            if(i.check){
+                a = a +(i.price * i.piece);
+                b = b + i.piece;
+              }
+          });
+          this.totalMoney = a;
+          this.piece = b;
+          this.$apply();
+        }
+      
+    }
+
+    computed  = {
+    }
+     
+    onShow(){
+      var that = this
+      var _3rdSession = wx.getStorageSync("_3rdSession");
+      if(_3rdSession==null||_3rdSession==''){  // 发送请求重新登录获取_3rdSession
+        that.$parent.transmission();
+      } 
+      that.check_3rdSession(_3rdSession); // 判断session是否过期 如果过期则重新获取
+      _3rdSession = wx.getStorageSync("_3rdSession");
+      this.getShoppingCarList(_3rdSession,false); // 根据_3rdSession向后台发送请求 获取购物车列表
+    }
+
+    /**
+     * 获取购物车列表，有带刷新功能
+    **/
+    getShoppingCarList(_3rdSession,refresh){
+      var that = this;
+      var sessionId = that.$parent.globalData.sessionId;
+      var baseUrl = that.$parent.globalData.baseUrl;
+      var url = baseUrl+'getShoppingCarList';
+      var params = {'_3rdSession':_3rdSession};
+      that.list = [];
+      request.requestSession(sessionId,url,params,"正在加载中",
+        function (res){
+           var list = res.data.list;
+           if(refresh){
+              that.list.splice(0,that.list.length);
+            }
+            for(var i =0;i<list.length;i++){
+              that.list.push(list[i]);
+            }
+            that.$apply();
+        },
+        function (res){
+        }
+      );
+    }
+
+    /**
+     *  检查session是否过期
+    **/
+    check_3rdSession(_3rdSession){
+      var that = this
+      var sessionId = that.$parent.globalData.sessionId;
+      var baseUrl = that.$parent.globalData.baseUrl;
+      var url = baseUrl+'check_3rdSession';
+      var params = {'_3rdSession':_3rdSession};
+       request.requestSession(sessionId,url,params,"正在加载中",
+        function (res){
+           if(res.data.check){}else{
+                // 重新登录 获取session
+                that.$parent.transmission();
+              }
+        },
+        function (res){
+        }
+      );
+     }
+
+    
+  }
+</script>

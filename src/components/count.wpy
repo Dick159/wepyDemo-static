@@ -1,0 +1,101 @@
+<style lang="less">
+/*主容器*/
+.stepper { 
+  /*给主容器设一个边框*/
+  border: 1px solid #ccc; 
+  border-radius: 3px; 
+  display : inline-block;
+} 
+  
+/*加号和减号*/
+.stepper text { 
+  width: 30%; 
+  line-height: 13px; 
+  text-align: center; 
+  float: left; 
+  margin-top:7px;
+} 
+  
+/*数值*/
+.stepper input { 
+  width: 35%; 
+  height: 100%; 
+  float: left; 
+  margin: 0 auto; 
+  text-align: center; 
+  font-size: 10px; 
+  /*给中间的input设置左右边框即可*/
+  border-left: 1px solid #ccc; 
+  border-right: 1px solid #ccc; 
+} 
+  
+/*普通样式*/
+.stepper .normal{ 
+  color: black; 
+} 
+  
+
+</style>
+
+<template>
+<!-- 主容器 -->
+<view class="stepper"> 
+    <!-- 加号 -->
+  <text class="normal" bindtap="bindPlus">+</text> 
+  <!-- 数值 -->
+  <input type="number" bindchange="bindManual" value="{{num}}" /> 
+  <!-- 减号 -->
+  <text class="normal" bindtap="bindMinus">-</text> 
+</view> 
+</template>
+
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Count extends wepy.component {
+    props={
+       num: {
+          type: Number,
+          default: '1',
+          twoWay: true
+       }
+    };
+
+    data = {
+    }
+
+    methods = {
+      bindMinus () { //减法    
+         var num = this.data.num; 
+        if (num > 1) { 
+           num --; 
+         } 
+        this.num = num;
+        this.$apply();
+        this.$parent.num = num;
+        this.$parent.$apply();
+      },
+       bindPlus(){ // 加法
+          var num = this.data.num; 
+          num ++; 
+          this.num = num;
+          this.$apply();
+          this.$parent.num = num;
+          this.$parent.$apply();
+      },
+      bindManual(e){ // 手写
+        var num = e.detail.value; 
+        this.num = num;
+        this.$apply();
+        this.$parent.num = num;
+        this.$parent.$apply();
+      }
+    };
+
+    onLoad () {
+    }
+
+  }
+
+</script>

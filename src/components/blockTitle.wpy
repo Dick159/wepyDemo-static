@@ -1,0 +1,44 @@
+<style>
+.title-cnt{
+    background-color:#f4f4f4;
+    font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+    width:100%;
+    text-align: left;
+    font-size:30rpx;
+    font-weight: 400;
+    line-height: 100rpx;
+}
+
+.text-cnt{
+   margin-left:30rpx;
+}
+</style>
+
+<template>
+    <view class="title-cnt">
+     <text class="text-cnt">{{pText}}</text>
+    </view>
+</template>
+
+
+
+
+<script>
+  import wepy from 'wepy'
+   export default class BlockTitle extends wepy.component {
+        props = {
+            pText:String
+        };
+
+        onLoad(){
+
+        };
+
+        methods ={
+            tap(e){
+                
+            }
+        }
+  }
+
+</script>

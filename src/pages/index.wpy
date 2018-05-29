@@ -1,0 +1,192 @@
+<style>
+/**index.wxss**/
+.img-unit{
+  width : 100%;
+  height : 100vh;
+  color: #ffffff;
+  white-space: nowrap;
+  display: flex;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.img-cnt{
+    width: 100%;
+    height: 100vh;
+    background: white;
+}
+
+.swiper-cnt{
+  width:100%;
+  height:100vh;
+}
+
+.arrow{
+  width:80rpx;
+  height:100rpx;
+}
+
+#img1{
+   opacity: 0;
+}
+
+.up{
+
+position:absolute;
+ 
+right:0;
+
+top:95%;
+
+left:45%;
+ 
+transform:translate(0,-50%);
+
+opacity: 0.3;
+
+}
+</style>
+
+
+<template>    
+<view class="container">
+  <scroll-view scroll-y vertical='true' class='swiper-cnt' @change="bindchangeTag" wx:for="{{posterList}}" wx:for-item="item">
+  <swiper-item wx:if="{{index==1}}" @tap="detail({{item.posterUrl}},{{item.navigateWay}})">
+    <image src="{{item.posterImage}}" class="img-cnt" id="img1" animation="{{firstImgAnimation}}" @load="firstImgLoad"></image>
+  </swiper-item>
+  <swiper-item wx:if="{{index!=1}}"  @tap="detail({{item.posterUrl}},{{item.navigateWay}})">
+    <image src="{{item.posterImage}}" class="img-cnt"></image>
+  </swiper-item>
+  </scroll-view>
+</view>
+</template>
+
+
+
+
+<script>
+  import wepy from 'wepy'
+  import request from '../utils/request.js'
+  export default class Index extends wepy.page {
+
+    globalData = {
+        tempA : ''
+    }
+
+     config = {
+      navigationBarTitleText: '今日焦点',
+      navigationBarBackgroundColor: '#c94e71',
+
+    }
+    data = {
+      animation:'',
+      interval:1500,
+      arrowDisplay:true,
+      arrowStyle : 'block',
+      firstImgAnimation:'',
+      posterList:[]
+    }
+     
+    methods = {
+            bindchangeTag (e){
+                  this.arrowDisplay = false;
+                  this.interval = 100;
+                  this.arrowStyle = "none";
+                 },
+
+            firstImgLoad (e) {
+                 this.firstImgAnimation = wx.createAnimation({
+                  duration: 3000,
+                  timingFunction: 'ease-in'
+                  });
+                 this.firstImgAnimation.opacity(1).step()
+                 this.firstImgAnimation = this.firstImgAnimation.export()
+                  this.doAnimation()
+            },
+
+            detail(url,type){
+              /*
+                    wx.navigateTo({
+                      url: 'posterDetail'
+                    })
+              */
+                 /*
+            NAVIGATE_WAY  1是商品页
+                2是信息页
+          */
+              if(type=='1'){
+                //商品页
+                wx.navigateTo({
+                   url: 'goodDetail?id=' + url
+                })
+              }else if(type =='2'){
+                // 信息页
+                 wx.navigateTo({
+                      url: 'posterDetail'
+                 })
+              }
+            }
+    }
+     
+    doAnimation(){
+    this.animation = wx.createAnimation({
+      duration: this.interval,
+      timingFunction: 'ease-in'
+    });
+    this.animation.opacity(0).step()
+    this.globalData.tempA = this.animation
+    this.animation = this.animation.export()
+    if(this.arrowDisplay){
+    setTimeout(() => {
+     this.animation = this.globalData.tempA;
+     this.animation.opacity(0.3).step()
+     this.animation = this.animation.export()
+     this.$apply();
+      setTimeout(() => {
+          this.doAnimation()
+          this.$apply();
+      }, this.interval)
+    }, this.interval)
+    }
+    }
+
+     onLoad(){
+           
+     }
+   
+     onShow(){
+        var that = this
+        var plist ;
+        var url = that.$parent.globalData.baseUrl+'getAllPoster';
+        /* 请求posterList
+        request.requestLoading(
+             url,
+             null,
+             '正在加载数据',
+             function (res){
+                that.posterList = res.data.list;
+                that.$apply();
+             },
+             function (res){
+                console.log("请求失败");
+             }
+        );
+        */
+        /**  **/
+        that.posterList = [
+        {posterUrl:'1',navigateWay:'2',posterImage:'../images/ver_img_1.jpg'},
+        {posterUrl:'1',navigateWay:'2',posterImage:'../images/ver_img_2.jpg'}
+        ];
+         that.$apply();
+     }
+
+        
+     onReady(){
+     }
+
+  }
+</script>

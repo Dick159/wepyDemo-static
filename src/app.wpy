@@ -1,0 +1,196 @@
+<style lang="less">
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  background-color: white;
+}
+</style>
+
+<script>
+import wepy from 'wepy'
+import 'wepy-async-function'
+
+import { setStore } from 'wepy-redux'
+import configStore from './store'
+import request from '../utils/request.js'
+
+const store = configStore()
+setStore(store)
+
+export default class extends wepy.app {
+  config = {
+    pages: [
+      'pages/index',
+      'pages/secondPage',
+      'pages/personal',
+      'pages/goodDetail',
+      'pages/posterDetail',
+      'pages/shoppingCar',
+      'pages/myOrder',
+      'pages/commonProplem',
+      'pages/storeDetail',
+      'pages/category'
+    ],
+    window: {
+    backgroundTextStyle:'light',
+    navigationBarBackgroundColor: '#c94e71',
+    navigationBarTextStyle:'#000'
+    },
+    tabBar: {
+    color: '#000',
+    selectedColor: '#c94e71',
+    borderStyle: '#000',
+    backgroundColor: '#fff',
+    list: [
+      {
+        pagePath: 'pages/index',
+        text: '今日焦点',
+        iconPath:'icon/barIcon/hot.png',
+        selectedIconPath:'icon/barIcon/hot_a.png'
+      },
+      {
+        pagePath: 'pages/secondPage',
+        text: '市场',
+        iconPath:'icon/barIcon/market.png',
+        selectedIconPath:'icon/barIcon/market_a.png'
+      },
+      {
+        pagePath: 'pages/shoppingCar',
+        text: '购物车',
+        iconPath:'icon/barIcon/shoppingCar.png',
+        selectedIconPath:'icon/barIcon/shoppingCar_a.png'
+      },
+      {
+        pagePath: 'pages/personal',
+        text: '个人中心',
+        iconPath:'icon/barIcon/personal.png',
+        selectedIconPath:'icon/barIcon/personal_a.png'
+      }
+    ]
+  }
+  }
+
+  globalData = {
+      logged :false,
+      userInfo : {},
+      sessionId :null,
+      _3rdSession : null,
+      // baseUrl :'http://120.77.255.159:8080/tiny/api/'
+      baseUrl :'http://localhost:8080/tiny/api/'
+  }
+
+  constructor () {
+    super()
+    this.use('requestfix')
+  }
+
+  onLaunch() {
+    this.getUserInfo();
+    this.transmission();
+  }
+  // 获取用户openid
+  transmission(){
+      var that = this
+      var appid = 'wx1709ca7f00aaad6f'
+      var secret = '56c5c702e5d0186f2346df165d36d65e'
+      var baseUrl = that.globalData.baseUrl;
+      wx.login({ // 登录
+        success: function(data){
+          var code = data.code;
+            wx.request({  //获取openid 
+              url: 'https://api.weixin.qq.com/sns/jscode2session?appid='+appid+'&secret='+secret+'&grant_type=authorization_code&js_code='+code,  
+              header: {'content-type': 'application/json'},  
+              success: function(res) {
+                /** 正式数据交互 **/
+                /*
+                request.requestLoading(baseUrl+'wxlogin',
+                    {
+                      'session_key':res.data.session_key,
+                      'openid':res.data.openid,
+                      'nickName':that.globalData.userInfo.nickName,
+                      'avatarUrl':that.globalData.userInfo.avatarUrl,
+                      'province':that.globalData.userInfo.province,
+                      'city':that.globalData.userInfo.city,
+                      'gender':that.globalData.userInfo.gender
+                    },
+                    function (rs){
+                      that.globalData._3rdSession = rs.data._3rdSession;
+                      that.globalData.sessionId = rs.data.sessionId;
+                      wx.setStorageSync("_3rdSession",rs.data._3rdSession);
+                      wx.setStorageSync("sessionId",rs.data.sessionId);
+                    },
+                    function (rs){
+
+                    }
+                    );  
+                */
+                /** 测试数据 **/
+                that.globalData._3rdSession = "test";
+                that.globalData.sessionId = "test";
+                wx.setStorageSync("_3rdSession","test");
+                wx.setStorageSync("sessionId","test");
+              }  
+            })  
+        }
+      });
+  }
+
+  sleep (s) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve('promise resolved')
+      }, s * 1000)
+    })
+  }
+
+  async testAsync () {
+    const data = await this.sleep(3)
+    console.log(data)
+  }
+
+  // 获取用户基础信息，保证页面显示，所以必须sync
+   getUserInfo() {
+    var logged = wx.getStorageSync('logged');
+    var userInfo = wx.getStorageSync('userInfo');
+    var that = this
+    if(logged){
+    //    wx.getStorageSync("userInfo",userInfo);
+    //    wx.getStorageSync("logged",logged);
+        that.globalData.userInfo = userInfo;
+        that.globalData.logged = logged;
+    }else{
+      // 只获取简单的用户信息
+        wx.login({
+          success:function(res){
+            wx.getUserInfo({
+                success:function (da){
+                   userInfo = da.userInfo;
+                   logged = true;
+                   that.globalData.userInfo = userInfo;
+                   that.globalData.logged = logged;
+                   wx.setStorageSync("userInfo",userInfo);
+                   wx.setStorageSync("logged",logged);
+                }
+            });
+          }
+        });
+    }
+  }
+
+  
+
+     // get_3rdSession(that){
+     //    var _3rdSession = wx.getStorageSync("_3rdSession");
+     //    var sessionId = that.$parent.globalData.sessionId;
+     //    if(_3rdSession==null||_3rdSession==''){  // 发送请求重新登录获取_3rdSession
+     //       that.$parent.transmission();
+     //     } 
+     //     that.$parent.check_3rdSession(_3rdSession); // 判断session是否过期 如果过期则重新获取
+     //     _3rdSession = wx.getStorageSync("_3rdSession");
+     // }
+}
+</script>

@@ -1,0 +1,91 @@
+<style lang="less">
+
+    
+.swiper-box{
+    width:100%;
+    background-color:transparent;
+}
+
+.swiper-box image{
+   width:100%;
+}
+
+.swiper-box .wx-swiper-dots.wx-swiper-dots-horizontal{
+     margin-bottom: 2rpx;
+}
+.swiper-box .wx-swiper-dot{
+    width:15rpx;
+    display: inline-flex;
+    height: 15rpx;
+    margin-left: 10rpx;
+    justify-content:space-between;
+}
+.swiper-box .wx-swiper-dot::before{
+    content: '';
+    flex-grow: 1; 
+    background: #c3c3c3;
+    border-radius: 8rpx
+}
+.swiper-box .wx-swiper-dot-active::before{
+    background:#333;   
+}
+
+</style>
+
+<template>
+<swiper indicator-dots="{{indicatorDots}}"  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class="swiper-box" style="height:{{imageHeight}}px">  
+  <block wx:for="{{imgUrls}}">  
+  <swiper-item>  
+    <image src="{{item}}" @load="imageLoad" @tap="tap" class="slide-image"  mode="aspectFill"
+    style="widht:{{imageWidht}}px;height:{{imageHeight}}px;"></image>  
+  </swiper-item>  
+  </block>  
+</swiper>
+</template>
+
+
+<script>
+  import wepy from 'wepy'
+
+  export default class GoodBanner extends wepy.component {
+    globalData = {
+       imageUtils :''
+    };
+    data = {  
+    imgUrls : [],
+    indicatorDots: false,  
+    autoplay: true,  
+    interval: 5000,
+    duration: 1000,
+    imageHeight:0,
+    imageWidht:0
+    };
+
+    props={
+       heightFactor:String
+    };
+    
+    methods = {
+         imageLoad(e){
+             var size = this.imageUtils.imageUtil(e);
+             this.imageHeight = size.imageHeight;
+             console.log(this.imageWidht+":" + this.imageHeight);
+             this.$apply();
+         },
+         tap(e){
+
+         }
+    };
+
+    add(img){
+        this.imgUrls.push(img);
+        this.$apply();
+    }
+
+    onLoad () {
+        this.imageUtils = require('../utils/ImageUtils.js')
+    }
+
+  }
+
+</script>

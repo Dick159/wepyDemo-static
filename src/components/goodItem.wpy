@@ -1,0 +1,74 @@
+<style>
+.cnt{
+  width:50%;
+  text-align: center;
+  background-color: transparent;
+  margin-top:15rpx;
+}
+
+.description{
+ display: block;
+  font-size: 25rpx;
+  line-height: 25rpx;
+  color:#000;
+  text-align: left;
+}
+
+.cnt text{
+    margin-left:20rpx;
+}
+
+.price{
+    font-size: 30rpx;
+    color:#000;
+    display: block;
+    text-align: left;
+}
+
+.cnt image{
+    width:350rpx;
+  height:350rpx;
+  background-color:transparent;
+}
+</style>
+
+<template>
+    <view @tap="tap" class="cnt" id="{{item.id}}">
+      <image src="{{item.imageUrl}}"  mode="aspectFill"></image>
+      <text class="description">{{item.name}}</text>
+      <text class="price">￥{{item.price}}</text>
+    </view>
+</template>
+
+
+<script>
+  import wepy from 'wepy'
+     export default class GoodItem extends wepy.component {
+           props={
+              imgSrc:String,
+              descript:String,
+              navigaUrl:String,
+              price:String,
+
+              item:{
+                type: String,
+                default:'',
+                twoWay: true
+              }
+           };
+
+           methods = {
+                tap(e){
+                    let id = e.currentTarget.id;
+                    wx.navigateTo({
+                       url: 'goodDetail?id=' + id
+                     })
+                }
+           }
+
+           onLoad(){
+
+           }
+
+     }
+</script>

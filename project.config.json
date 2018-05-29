@@ -1,0 +1,42 @@
+{
+	"description": "We-py-Tesssst-hddw",
+	"setting": {
+		"urlCheck": false,
+		"es6": false,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"appid": "wx1709ca7f00aaad6f",
+	"projectname": "staticWepyDemo",
+	"miniprogramRoot": "./dist",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": -1,
+					"name": "Market",
+					"pathName": "pages/secondPage",
+					"query": ""
+				}
+			]
+		}
+	}
+}

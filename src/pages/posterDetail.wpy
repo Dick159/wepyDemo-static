@@ -1,0 +1,167 @@
+<style>
+.rich_media_inner{
+    position: relative;
+    word-wrap: break-word;
+     font-family: -apple-system-font,"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    width:100%;
+}
+
+
+.rich_media_area_primary{
+    width:95%;
+    position:relative;
+    margin:auto;
+}
+.rich_media_title{
+    margin:0;
+    padding:0;
+    font-size:35rpx;
+    font-family: -apple-system-font,"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+
+
+
+.rich_media_meta_list{
+    margin-top:20rpx;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 18px;
+    line-height: 20px;
+    font-size: 16px;
+    word-wrap: break-word;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+}
+
+.rich_media_meta{
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    max-width: none;
+}
+
+.rich_media_meta_text{
+color: #8c8c8c;
+}
+.h2-line{
+    border-bottom:2px #f4f4f4 solid;
+    margin-top:20rpx;
+}
+.meta_original_tag{
+    display: inline-block;
+    vertical-align: middle;
+    padding: 1px .5em;
+    border: 1px solid #9e9e9e;
+    color: #8c8c8c;
+    border-top-left-radius: 20% 50%;
+    -moz-border-radius-topleft: 20% 50%;
+    -webkit-border-top-left-radius: 20% 50%;
+    border-top-right-radius: 20% 50%;
+    -moz-border-radius-topright: 20% 50%;
+    -webkit-border-top-right-radius: 20% 50%;
+    border-bottom-left-radius: 20% 50%;
+    -moz-border-radius-bottomleft: 20% 50%;
+    -webkit-border-bottom-left-radius: 20% 50%;
+    border-bottom-right-radius: 20% 50%;
+    -moz-border-radius-bottomright: 20% 50%;
+    -webkit-border-bottom-right-radius: 20% 50%;
+    font-size: 15px;
+    line-height: 1.1;
+}
+.rich_media_content{
+    position: relative;
+    min-height: 350px;
+    overflow: hidden;
+    color: #3e3e3e;
+    margin:0;
+    padding:0;
+}
+
+.rich_media_content image{
+    width:100%;
+}
+
+.space-line{
+    line-height: normal;
+    height:15rpx;
+}
+
+.QRCode-cnt image{
+    width:200rpx;
+    height:200rpx;
+}
+
+</style>
+
+
+<template>
+    <view class="rich_media_inner">
+    <view class="rich_media_area_primary">
+
+    <text class="rich_media_title" id="activity-name">
+                    杜蒙个展《间》将于上海玻璃博物馆开幕                                    
+    </text>
+   
+   <view class="h2-line"></view>
+
+   <view id="meta_content" class="rich_media_meta_list">
+                                        <span id="copyright_logo" class="rich_media_meta meta_original_tag">原创</span>
+                                                            <em id="post-date" class="rich_media_meta rich_media_meta_text">2018-04-27</em>
+
+                                        <em class="rich_media_meta rich_media_meta_text">否画廊</em>
+                                    
+
+     </view>
+
+     <view class="rich_media_content">
+        <image src="../images/posterDetail_img_1.jpg"></image>
+        <view class="space-line"></view>
+        <view style="width:100;text-align:center">
+        <text style="font-size:16px;font-weight: 700;display:block;">杜蒙：间</text>
+        <text style="font-size:16px;font-weight: 700;display:block;">Meng Du: The Room</text>
+         <view class="space-line" style="height:40rpx;"></view>
+       <text style="font-size:14px;font-weight: 400;display:block;">2018年4月29日— 2018年10月29日</text>
+          <view class="h2-line" style="border-bottom-color: #c3c3c3;border-bottom-width: 3rpx;opacity:0.7"></view>
+
+        </view>
+
+        <view>
+         <text style="font-size:14px;font-weight: 700;">地点：</text><text style="font-size:14px;font-weight: 400;">上海玻璃博物馆，上海市宝山区长江西路685号</text>
+        <view class="space-line" style="height:20rpx;"></view>
+         <text style="font-size:14px;font-weight: 700;display:block;">开放时间：</text>
+          <text style="font-size:14px;font-weight: 400;display:block;">夏令开放时间（5月－10月）：周二至周日9:30-18:00（17:00停止售票）</text>
+        <text style="font-size:14px;font-weight: 400;display:block;">冬令开放时间（11月－4月）：周二至周日9:30-17:00（16:00停止售票）</text>
+         <text style="font-size:14px;font-weight: 400;display:block;">博物馆夏令夜场：周六18:00-21:00（20:00停止售票）</text>
+        <text style="font-size:14px;font-weight: 700;">策展人：</text> <text style="font-size:14px;font-weight: 400;">阳昕</text>
+     </view>
+         <view class="space-line" style="height:20rpx;"></view>
+          <view style="width:100;text-align: center;" class="QRCode-cnt">
+              <image src="../images/qrcode.jpg"></image>
+          </view>
+         
+            <view class="space-line" style="height:20rpx;"></view>
+
+            <view style="width:95%;text-align: right">
+               <text style="font-size:14px;color:#607fa6">联系我们</text>
+            </view>
+    </view>
+
+    </view>
+</view>
+</template>
+
+
+
+<script>
+
+    import wepy from 'wepy'
+    export default class PosterDetail extends wepy.page {
+
+
+          
+    }
+
+</script>
