@@ -49,6 +49,7 @@
 
 
 .title-cnt{
+    marign-top:5px;
     background-color:#f4f4f4;
     font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
     width:100%;
@@ -78,12 +79,12 @@
   height:80rpx;
   display:flex;
   flex-direction:row;
+  background-color:white;
 }
 .default{
   line-height:100rpx;
   text-align:center;
   flex:1;
-  border-right:1px solid gainsboro;
   color:#000;
   font-weight:bold;
   font-size:28rpx;
@@ -93,9 +94,14 @@
   text-align:center;
   color:#fc5558;
   flex:1;
-  border-right:1px solid gainsboro;
   font-weight:bold;
   font-size:28rpx;
+  border-bottom:2px solid #fc5558;
+}
+.space-div{
+  width:100%;
+  height:3px;
+  background-color:#f4f4f4;
 }
 
 </style>
@@ -104,6 +110,7 @@
  <view class="container">
     <search></search>
  <banner heightFactor='3'></banner>
+  <view class="space-div"></view>
 <view class="func-area"  >
   <view wx:for="{{categoryList}}" wx:for-key="id" wx:for-index="index">
     <view @tap="showCategory({{item.id}})">
@@ -114,9 +121,10 @@
   </view>
     
   <view class="middle-body">
+    <view class="space-div"></view>
     <view class="title-cnt">
      <!-- <text class="text-cnt">{{pText}}</text> -->
-     <view class="bc_white">
+    <view class="bc_white">
       <view class="{{goodFlag?'red':'default'}}" @tap="goodFlagSelect">精品商品</view>
       <view class="{{storeFlag?'red':'default'}}" @tap="storeFlagSelect">精品商家</view>
     </view>
@@ -323,10 +331,10 @@
           {id:'4',imageUrl:'../images/goods/3/3.jpg',name:'蒲扇',price:'68.00'},
           {id:'5',imageUrl:'../images/goods/3/4.jpg',name:'地毯',price:'288.00'}]},
         {ID:'2',NAME:'小猪商铺',DESCRIPT:'',STORE_LOGO:'',list:[
+          {id:'6',imageUrl:'../images/goods/1/1.jpg',name:'菊花',price:'122.00'},
           {id:'1',imageUrl:'../images/goods/2/1.jpg',name:'两只小熊',price:'688.00'},
           {id:'2',imageUrl:'../images/goods/2/3.jpg',name:'人体单车',price:'899.00'}]},
         {ID:'3',NAME:'艺彩商品',DESCRIPT:'',STORE_LOGO:'',list:[
-            {id:'6',imageUrl:'../images/goods/1/1.jpg',name:'菊花',price:'122.00'},
             {id:'7',imageUrl:'../images/goods/1/2.jpg',name:'荷花',price:'188.00'},
             {id:'8',imageUrl:'../images/goods/1/3.jpg',name:'字画',price:'368.00'},
             {id:'9',imageUrl:'../images/goods/1/4.jpg',name:'梅花',price:'180.00'}]
