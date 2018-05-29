@@ -314,6 +314,7 @@
     }
 
       /** 静态商家测试 **/
+       /** 静态商家测试 **/
       getTestStoreList(){
         var that = this
         that.storeList = [

@@ -162,28 +162,10 @@ opacity: 0.3;
         var that = this
         var plist ;
         var url = that.$parent.globalData.baseUrl+'getAllPoster';
-        /* 请求posterList
-        request.requestLoading(
-             url,
-             null,
-             '正在加载数据',
-             function (res){
-                that.posterList = res.data.list;
-                that.$apply();
-             },
-             function (res){
-                console.log("请求失败");
-             }
-        );
-        */
-        /**  **/
-        that.posterList = [
-        {posterUrl:'1',navigateWay:'2',posterImage:'../images/ver_img_1.jpg'},
-        {posterUrl:'1',navigateWay:'2',posterImage:'../images/ver_img_2.jpg'}
-        ];
-         that.$apply();
+        that.posterList = [{posterUrl:'1',navigateWay:'2',posterImage:'../images/ver_img_1.jpg'},
+        {posterUrl:'1',navigateWay:'2',posterImage:'../images/ver_img_2.jpg'}];
+        that.$apply();
      }
-
         
      onReady(){
      }

@@ -176,6 +176,7 @@ page{
     }
      
     onShow(){
+      /*
       var that = this
       var _3rdSession = wx.getStorageSync("_3rdSession");
       if(_3rdSession==null||_3rdSession==''){  // 发送请求重新登录获取_3rdSession
@@ -184,6 +185,7 @@ page{
       that.check_3rdSession(_3rdSession); // 判断session是否过期 如果过期则重新获取
       _3rdSession = wx.getStorageSync("_3rdSession");
       this.getShoppingCarList(_3rdSession,false); // 根据_3rdSession向后台发送请求 获取购物车列表
+      */
     }
 
     /**
@@ -196,6 +198,7 @@ page{
       var url = baseUrl+'getShoppingCarList';
       var params = {'_3rdSession':_3rdSession};
       that.list = [];
+      /*
       request.requestSession(sessionId,url,params,"正在加载中",
         function (res){
            var list = res.data.list;
@@ -210,6 +213,8 @@ page{
         function (res){
         }
       );
+      */
+      that.$apply();
     }
 
     /**
