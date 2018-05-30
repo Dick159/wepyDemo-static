@@ -33,7 +33,8 @@ export default class extends wepy.app {
       'pages/myOrder',
       'pages/commonProplem',
       'pages/storeDetail',
-      'pages/category'
+      'pages/category',
+      'pages/manageAddress'
     ],
     window: {
     backgroundTextStyle:'light',

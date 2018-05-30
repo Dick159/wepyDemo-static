@@ -167,8 +167,8 @@
             
         </view>
 
-       <view  bindtap="nameClick" class="userinfo">
-        <image class="userinfo-avatar"  src="{{logged ? userInfo.avatarUrl : unloginImage}}" background-size="cover"></image>
+       <view @tap="nickName" class="userinfo">
+        <image class="userinfo-avatar"  src="{{userInfo.avatarUrl}}" background-size="cover"></image>
         <text class="userinfo-nickname">{{logged ? userInfo.nickName :'点击登录'}}</text>
        </view>
  <!-- 
@@ -193,16 +193,51 @@
        </view>
 -->
        <view class="info_list">
-            <block wx:for="{{userListInfo}}">
-                <view class="weui_cell" bindtap="navTo" data-url="{{item.url}}">
-                    <view class="weui_cell_hd"><image src="{{item.icon}}"></image></view>
-                    <view class="weui_cell_bd">
-                        <view class="weui_cell_bd_p"> {{item.text}} </view>
+          <view class="weui_cell" data-url="{{item.url}}" @tap="myOrder">
+                  <block >
+                    <view class="weui_cell_hd">
+                      <image src="../images/my/iconfont-dingdan.png"></image>
                     </view>
-                    <view wx:if="{{item.isunread}}" class="badge">{{item.unreadNum}}</view>
+                    <view class="weui_cell_bd">
+                        <view class="weui_cell_bd_p"> 我的订单 </view>
+                    </view>
+                    <view wx:if="{{item.isunread}}" class="badge">{{unreadNum}}</view>
                     <view class="with_arrow"></view>
+                  </block>
+            </view>
+            <view class="weui_cell"  data-url="{{item.url}}" @tap="manageAddress">
+             <block >
+                    <view class="weui_cell_hd">
+                      <image src="../images/my/iconfont-shouhuodizhi.png"></image>
+                    </view>
+                    <view class="weui_cell_bd">
+                        <view class="weui_cell_bd_p"> 收货地址管理 </view>
+                    </view>
+                    <view class="with_arrow"></view>
+                  </block>
                 </view>
-            </block>
+                <view class="weui_cell"   data-url="{{item.url}}" @tap="contactUs">
+                  <block >
+                    <view class="weui_cell_hd">
+                      <image src="../images/my/iconfont-kefu.png"></image>
+                    </view>
+                    <view class="weui_cell_bd">
+                        <view class="weui_cell_bd_p"> 联系客服 </view>
+                    </view>
+                    <view class="with_arrow"></view>
+                  </block>
+                  </view>
+                  <view class="weui_cell"   data-url="{{item.url}}" @tap="aboutUs">
+                  <block >
+                    <view class="weui_cell_hd">
+                      <image src="../images/my/iconfont-help.png"></image>
+                    </view>
+                    <view class="weui_cell_bd">
+                        <view class="weui_cell_bd_p"> 关于我们 </view>
+                    </view>
+                    <view class="with_arrow"></view>
+                  </block>
+                </view>
       </view>
      
 </view>
@@ -220,47 +255,55 @@
       userInfo :null,
       logged:false,
       unloginImage: '../images/my/user-unlogin.png',
-      userListInfo: [
-      {
-      icon: '../images/my/iconfont-dingdan.png',
-      url:'myOrder',
-      text: '我的订单'
-      }, 
-      {
-        icon: '../images/my/iconfont-shouhuodizhi.png',
-        url:'',
-        text: '收货地址管理'
-      }, {
-        icon: '../images/my/iconfont-kefu.png',
-        url:'',
-        text: '联系客服'
-      }, {
-        icon: '../images/my/iconfont-help.png',
-        url:'commonProplem',
-        text: '关于我们'
-      }]
     };
 
     methods = {
-        // 链接跳转
-        navTo(e){
-          var urlValue = e.currentTarget.dataset.url;
+        myOrder(){
+          var urlValue = "myOrder";
           wx.navigateTo({
             url:urlValue
           }); 
         },
-        nameClick() {
+        manageAddress(){
+          wx.navigateTo({
+            url:'manageAddress'
+          })
+        },
+        contactUs(){
+
+        },
+        aboutUs(){
+
+        },
+        nickName(){
+          var that = this
+          if(!that.logged){
+          wx.getUserInfo({
+            success: function(res) {
+              that.userInfo = res.userInfo
+              that.$apply()
+              }
+          })
+        }
         }
     };
-    onShow (){
-     
-    }
+
     onLoad() {
+      var that = this
       var logged = wx.getStorageSync('logged');
       var userInfo = wx.getStorageSync('userInfo');
-      this.userInfo = userInfo;
-      this.logged = logged;
-      this.$apply();
+      if(userInfo==null){
+        wx.getUserInfo({
+          success:function(res){
+            userInfo = res.userInfo;
+            console.log(userInfo);
+          }
+        })
+     }
+      console.log(userInfo);
+      that.userInfo = userInfo;
+      that.logged = logged;
+      that.$apply();
     };
   }
 </script>

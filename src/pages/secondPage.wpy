@@ -114,7 +114,7 @@
 <view class="func-area"  >
   <view wx:for="{{categoryList}}" wx:for-key="id" wx:for-index="index">
     <view @tap="showCategory({{item.id}})">
-      <image src="{{item.categoryIcon}}" mode="aspectFill"  />
+      <image src="{{item.categoryIcon}}" mode="aspectFill" />
       <text>{{item.categoryName}}</text>
     </view>
   </view>
@@ -190,7 +190,7 @@
     methods = {
       showCategory(id){
          wx.navigateTo({
-                   url: 'category?id=' + url
+                   url: 'category?id=' + id
                 })
       },
       showCategoryGoods(id){
@@ -358,7 +358,7 @@
     getTestGoodList(){
       var that = this
           that.goodList = [
-          {id:'1',imageUrl:'../images/goods/2/1.jpg',name:'两只小熊',price:'688.00'},
+          {id:'1',imageUrl:'../images/goods/2/1.jpg',name:'两只小熊',price:'688.00',descript:'两只小熊'},
           {id:'2',imageUrl:'../images/goods/2/3.jpg',name:'人体单车',price:'899.00'},
           {id:'3',imageUrl:'../images/goods/3/2.jpg',name:'抱枕',price:'88.00'},
           {id:'4',imageUrl:'../images/goods/3/3.jpg',name:'蒲扇',price:'68.00'},

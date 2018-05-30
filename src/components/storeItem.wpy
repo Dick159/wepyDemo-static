@@ -160,8 +160,8 @@
 
            methods = {
                 toStore(id){
-                  wx.switchTab({
-                      url: '../pages/storeDetail?storeId='+id
+                  wx.navigateTo({
+                      url: 'storeDetail?id='+id
                     })
                 }
            }

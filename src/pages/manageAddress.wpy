@@ -1,0 +1,154 @@
+<style lang=less>
+page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #F2f2f2;
+}
+.item{
+  display: flex;
+  flex-direction: row;
+}
+.address{
+  display: flex; 
+  flex-direction: column;
+  margin-left: 4%;
+  margin-top:5%;
+}
+.detailInfo{
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.select{
+  margin-top:8%;
+  margin-left:3%;
+}
+.bottom{
+  position:fixed; 
+  bottom:0;
+  display: block;
+  width: 90%;
+  margin-left: 5%;
+  margin-bottom: 2%;
+}
+ 
+</style>
+
+<template>
+	<block class="body">
+		<repeat for="{{addressList}}" key="index" index="index" item="item">
+			<view class="item">
+				  <view class="select">
+		              <radio @tap="selectThat({{item.id}},{{item.isSelect}})" checked="{{item.isSelect=='1'}}">
+		              </radio>
+        	</view>
+          <view class="address" @tap="selectThat({{item.id}},{{item.isSelect}})">   
+            <view style="text-align: left;">
+              <text style="font-size:20px;">{{item.userName}} </text>           
+              <text style="font-size:18px;">{{item.telNumber}}</text>
+              
+            </view>
+            <block class="detailInfo">
+                <text style="font-size:16px;color:gray;">
+                  地址：{{item.provinceName}}{{item.cityName}}{{item.countyName}}{{item.detailInfo}}
+                </text>
+             </block>
+          </view>
+			</view>
+		</repeat>
+  </block>
+  <view class="bottom">
+      <button @tap="addNewAddress"> 新增收货地址 
+      </button>
+  </view>
+
+
+</template>
+
+
+<script>
+  import wepy from 'wepy'
+
+  export default class manageAddress extends wepy.page {
+     config = {
+      navigationBarTitleText: '收货地址管理'
+    }
+
+    components = {
+    }
+
+    data ={
+        userInfo:null ,
+        addressList:[]
+    }
+
+
+    methods = {
+       selectThat(id,isSelect){
+       	var that =  this
+       	var addressList = that.addressList
+       	var flag = !(isSelect=='1');
+        console.log();
+        for(var i=0;i<addressList.length;i++){
+            if(addressList[i].id==id){
+              addressList[i].isSelect = flag;
+            }else{
+              addressList[i].isSelect = false;
+            }
+          }
+       	that.$apply()
+       },
+       addNewAddress(){
+        var that = this
+        var addressList = that.addressList
+        var address  ;
+        wx.chooseAddress({
+          success: function (res) {
+            address = {
+                      id:addressList.length+1,
+                      userName:res.userName,
+                      postalCode:res.postalCode,
+                      provinceName:res.provinceName,
+                      cityName:res.cityName,
+                      countyName:res.countyName,
+                      detailInfo:res.detailInfo,
+                      telNumber:res.telNumber,
+                      isSelect:res.isSelect};
+            console.log(address);
+            console.log(that.addressList);
+            that.addressList.push(address);
+            console.log(that.addressList);
+            wx.setStorageSync('addressList',that.addressList);
+            that.$apply();
+          }
+        })
+
+       }
+       
+    }
+
+    onLoad(){
+    	var that = this
+       // 获取登录user 用于数据保存地址列表。（静态版不用，只保存至缓存中）
+       var userInfo = wx.getStorageSync('userInfo');
+       // 获取地址列表
+       var addressList = wx.getStorageSync('addressList');
+       if(addressList==null ||addressList==''){
+       		// addressList = [
+       		// {id:'1',userName:'胡大吊',postalCode:'邮编',provinceName:'广东省',cityName:'中山市',
+       		// countyName:'新会',detailInfo:'中山先生家左边2楼',telNumber:'13631223390',isSelect:'1'}
+         //  ,{id:'2',userName:'胡大吊',postalCode:'邮编',provinceName:'广东省',cityName:'中山市',
+         //  countyName:'新会',detailInfo:'中山先生家左边2楼',telNumber:'13631223390',isSelect:'0'}
+       		// ];
+          wx.setStorageSync('addressList',addressList);
+       }
+       that.addressList = addressList;
+       that.$apply();
+    }
+ 
+
+    
+  }
+</script>

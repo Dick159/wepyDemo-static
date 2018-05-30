@@ -220,7 +220,6 @@ text {
         // 弹出弹窗 选择数量，尺寸， 点击确定 请求后台添加至购物车
         // 现在暂时直接请求后台加入购物车 不做数量 尺寸登记。
         /*
-        var that = this
         var baseUrl = that.$parent.globalData.baseUrl;
         var url = baseUrl + "addToShoppingCar";
         var that = this

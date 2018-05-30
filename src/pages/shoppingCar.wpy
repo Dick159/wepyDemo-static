@@ -162,7 +162,7 @@ page{
           newValue.forEach(function(i,index){
             if(i.check){
                 a = a +(i.price * i.piece);
-                b = b + i.piece;
+                b = b + parseInt(i.piece);
               }
           });
           this.totalMoney = a;
@@ -186,6 +186,15 @@ page{
       _3rdSession = wx.getStorageSync("_3rdSession");
       this.getShoppingCarList(_3rdSession,false); // 根据_3rdSession向后台发送请求 获取购物车列表
       */
+      var that = this
+      that.list = []
+      var good1 = 
+      {id:'1',imageUrl:'../images/goods/2/1.jpg',name:'两只小熊',price:'688.00',piece:1,descript:'两只小熊'};
+      var good2 = {id:'3',imageUrl:'../images/goods/3/2.jpg',name:'抱枕',price:'88.00',piece:1,descript:'抱枕'};
+      that.list.push(good1);
+      that.list.push(good2);
+      console.log(that.list);
+      that.$apply();
     }
 
     /**
@@ -214,7 +223,6 @@ page{
         }
       );
       */
-      that.$apply();
     }
 
     /**
