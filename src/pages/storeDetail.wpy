@@ -106,11 +106,11 @@
   background-color:#f4f4f4;
 }
 .logo{
-  width:8vw;
-  height:3vh;
-  float: left;
-  margin-left: 3vw;
-  margin-top:3vh;
+  width:11vw;
+  height:9vh;
+  float:left;
+  margin-left:2vw;
+  margin-top:1vh;
 }
 .top{
   display:flex;
@@ -124,13 +124,15 @@
 .descript{
   height:12vh;
   width: 100%;
-  margin-top:5vh;
+  margin-top:3vh;
   margin-left: 3vw;
   font-size:16px;
   color:gray;
 }
 .name{
-  font-size:18px; 
+  font-size:24px; 
+  margin-top:2vh;
+  margin-left:3vw;
 }
 
 </style>
@@ -141,6 +143,7 @@
     <view class="name">{{storeItem.NAME}} 
     </view>
   </view>
+  <view class="space-div"></view>
   <view class="descript">
     <text>商家描述：{{storeItem.DESCRIPT}}</text>
   </view>
