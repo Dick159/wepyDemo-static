@@ -145,6 +145,7 @@ page {
              }
         );
     */
+    that.goodList = [];
       if(id=='1'){
           var that = this
           var good1 = {id:'6',imageUrl:'../images/goods/1/1.jpg',name:'菊花',price:'122.00'}
