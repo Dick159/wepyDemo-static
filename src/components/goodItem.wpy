@@ -20,9 +20,10 @@
 
 .price{
     font-size: 30rpx;
-    color:#000;
+    color:#f40;
     display: block;
-    text-align: left;
+    text-align: right;
+    margin-right:10px;
 }
 
 .cnt image{
@@ -30,13 +31,18 @@
   height:350rpx;
   background-color:transparent;
 }
+.price-view{
+  text-align: right;
+}
 </style>
 
 <template>
     <view @tap="tap" class="cnt" id="{{item.id}}">
       <image src="{{item.imageUrl}}"  mode="aspectFill"></image>
       <text class="description">{{item.name}}</text>
+      <view class="price-view">
       <text class="price">￥{{item.price}}</text>
+    </view>
     </view>
 </template>
 
