@@ -1,9 +1,10 @@
 <style>
 .cnt{
-  width:50%;
+  width:49%;
   text-align: center;
   background-color: transparent;
   margin-top:15rpx;
+  border:1px solid #E4E4E4;
 }
 
 .description{
@@ -27,7 +28,7 @@
 }
 
 .cnt image{
-  width:350rpx;
+  width:100%;
   height:350rpx;
   background-color:transparent;
 }

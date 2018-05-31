@@ -33,11 +33,11 @@
 
 <template>
 
-<swiper indicator-dots="{{indicatorDots}}"  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class="swiper-box">  
+<swiper indicator-dots="{{indicatorDots}}"  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class="swiper-box" id="swiper-cnt">  
   <block wx:for="{{dataList}}">  
   <swiper-item class="banner">  
     <image @load="imageLoad" @tap="tap({{item.bannerURL}},{{item.navigateWay}})" class='Banner-img' src="{{item.bannerIcon}}" 
-    style="width:{{imageWidth}}px;height:{{imageHeight}}px"  mode="aspectFill" />  
+    style="width:{{imageWidth}}px;height:{{imageHeight}}px"  mode="scaleToFill" />  
   </swiper-item>  
   </block>  
 </swiper>
@@ -66,12 +66,16 @@
 
     methods = {
       imageLoad (e) { 
-       var query = wx.createSelectorQuery()
-        wx.createSelectorQuery().select('.swiper-box').boundingClientRect(function(rect){
-            var width = rect.width   // 节点的宽度
-            var height = rect.height  // 节点的高度
-            imageUtil.imageUtil2(e,width,height);
-        }).exec()
+        var that = this
+        var query = wx.createSelectorQuery();
+        query.select('#swiper-cnt').boundingClientRect();
+        query.exec(function (res) {
+             var imageSize = imageUtil.imageUtil2(e,res[0].width,res[0].height);
+             that.imageWidth= res[0].width;
+             that.imageHeight = imageSize.imageHeight;
+             that.$apply();
+        });
+        this.$apply();
       },
 
       tap (url,type){

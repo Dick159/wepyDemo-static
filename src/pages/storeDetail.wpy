@@ -1,5 +1,7 @@
 <style>
 .container{
+  margin:auto;
+  width:100%;
   }
 
 .func-area {
@@ -106,46 +108,45 @@
   background-color:#f4f4f4;
 }
 .logo{
-  width:11vw;
-  height:9vh;
+  width:15vh;
+  height:100%;
   float:left;
   margin-left:2vw;
-  margin-top:1vh;
 }
 .top{
-  display:flex;
-  flex-direction:row;
-  text-align: center;
   width: 100%;
-}
-.top text{
-  text-align: center;
+  height:80px;
+  background-color:transparent;
 }
 .descript{
-  height:12vh;
+  height:30vh;
   width: 100%;
-  margin-top:3vh;
-  margin-left: 3vw;
   font-size:16px;
   color:gray;
 }
 .name{
-  font-size:24px; 
-  margin-top:2vh;
-  margin-left:3vw;
+  height:100%;
+  float:right;
+}
+
+.store-logo-name{
+   font-size:16px;
+   line-height:80px;
+   margin-right:15px;
 }
 
 </style>
 <template class="tmp">
  <view class="container">
+     <search></search>
   <view class="top">
     <image class="logo" src="{{storeItem.STORE_LOGO}}" mode="aspectFill"/>
-    <view class="name">{{storeItem.NAME}} 
+    <view class="name"><text class="store-logo-name">{{storeItem.NAME}} </text>
     </view>
   </view>
   <view class="space-div"></view>
-  <view class="descript">
-    <text>商家描述：{{storeItem.DESCRIPT}}</text>
+  <view class="descript" id="storeBannerCnt">
+    <image  src="../images/banner_view_3.jpg" style="width:{{imageWidth}}px;height:{{imageHeight}}px"  mode="aspectFill" @load="storeBannerLoad"></image>
   </view>
 
   <view class="middle-body">
@@ -171,6 +172,8 @@
   import request from '../utils/request.js'
   import GoodItem from '../components/goodItem'
   import Banner from '../components/banner'
+  import imageUtil from '../utils/ImageUtils.js'
+  import Search from '../components/search'
   export default class GoodDetail extends wepy.page {
      config = {
       navigationBarTitleText: '商店详情'
@@ -178,7 +181,8 @@
 
     components = {
         banner:Banner,
-        gooditem:GoodItem
+        gooditem:GoodItem,
+        search:Search
     }
 
     data ={
@@ -188,7 +192,9 @@
         imgUrls: [],
         detailImg: [],
         storeItem:{},
-        goodList:[]
+        goodList:[],
+        imageWidth: wx.getSystemInfoSync().windowWidth,
+        imageHeight:wx.getSystemInfoSync().windowHeight
     }
 
 
@@ -198,6 +204,19 @@
         that.flag = i;
         that.$apply()
         //showTabGoods();
+      },
+
+      storeBannerLoad(e){
+        var that = this
+        var query = wx.createSelectorQuery();
+        query.select('#storeBannerCnt').boundingClientRect();
+        query.exec(function (res) {
+             var imageSize = imageUtil.imageUtil2(e,res[0].width,res[0].height);
+             that.imageWidth= res[0].width;
+             that.imageHeight = imageSize.imageHeight;
+             that.$apply();
+        });
+        this.$apply();             
       }
     }
 

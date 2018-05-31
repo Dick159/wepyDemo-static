@@ -25,9 +25,7 @@ function imageUtil(e) {
       }  
        
     }  
-  })  
-  // console.log('缩放后的宽: ' + imageSize.imageWidth)  
-  // console.log('缩放后的高: ' + imageSize.imageHeight)  
+  }) 
   return imageSize;  
 }  
 function imageUtil2(e,width,height){
@@ -47,7 +45,6 @@ function imageUtil2(e,width,height){
      imageSize.imageHeight = (windowWidth * originalHeight) / originalWidth;  
   }else{//图片高宽比大于屏幕高宽比  
     //图片缩放后的高为屏幕高  
-    console.log("???????");
      imageSize.imageHeight = windowHeight;  
      imageSize.imageWidth = (windowHeight * originalWidth) / originalHeight;  
   }  

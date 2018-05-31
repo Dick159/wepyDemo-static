@@ -2,105 +2,141 @@
 .container {
 } 
 .goodItem{
-  height: 100px;
+  height: 20vh;
   width: 100%;
   background-color: #FFFFFF;
-  margin-top: 15px;
-  border-bottom: 1px solid #C94E71;
+  margin-top: 10px;
+  border-bottom: 1px solid #E4E4E4;
+  display: flex;
 }
 .cb{
   display:inline-block;
-  width:10%;
-  height:100%;
-  text-align:center;
+  margin-top:30px;
+  margin-left:5px;
 }
 .cb checkbox{
+  display:inline-block;
 }
 .cnt{
   display:inline-block;
   vertical-align:middle;
-  width: 89%;
-}
-
-.description{
-  display: inline-block;
-  font-size: 12px;
-  color: #9c9c9c;
-  width: 370px;
+  height:100%;
+  width:100%;
 }
 
 .singleTotalPrice{
     font-family: Verdana,Tahoma,arial;
-    color: #ff0000;
+    color: #F40;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 12px;
+}
+
+.image-view{
+  display: inline-block;
+  width:18vh;
+  height:20vh;
+  margin-left:5px;
 }
 
 .cnt image{
   display:inline-block;
-  width: 18%;
-  height:87px;
-  margin-top:5px;
+  width: 100%;
+  height:80%;
+  margin-bottom: 3vh;
+  border:1px solid #E4E4E4;
 }
 .num{
-  font-size: 14px;
+  font-size: 12px;
 }
 .singlePrice{
-  font-size:14px;
+  font-size:12px;
 }
 .name{
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: 700;
 }
+
+.description{
+  font-size: 12px;
+  color: #9c9c9c;
+  opacity: 0.7;
+}
+
 .detail{
-  margin-left: 5%;
   display:inline-block;
-  width: 77%;
-  height:100px;
+  height:100%;
 }
-.counter{
-  height:30px;
-  width:100px;
-  float:right;
+.detail text{
+  display: flex;
 }
+
+.detail view{
+  float:left;
+}
+
+.detail-cnt {
+  display: inline-block;
+  height:100%;
+}
+
+.space-div{
+  width:100%;
+  height:3px;
+  background-color:#f4f4f4;
+}
+
 .singelPiece{
   font-size: 12px;
   display: inline-block;
   margin-left:30px;
 }
-/*主容器*/
-.stepper { 
-  /*给主容器设一个边框*/
-  border: 1px solid #ccc; 
-  border-radius: 3px; 
-  display : inline-block;
-} 
+
+.counter{
+  float:right;
+  margin-top:14vh;
+}
+
+/*主容器*/  
+.stepper {  
+    width: 13vh;  
+    height: 5vh;  
+    /*给主容器设一个边框*/  
+    border: 1px solid #ccc;  
+    border-radius: 3px;  
+    float:right;
+    margin-right: 5px;
+}  
   
-/*加号和减号*/
-.stepper text { 
-  width: 30%; 
-  line-height: 13px; 
-  text-align: center; 
-  float: left; 
-  margin-top:7px;
-} 
+/*加号和减号*/  
+.stepper text {  
+    width: 4vh;  
+    height: 5vh;
+    text-align: center;  
+    float: left;  
+    line-height: 5vh;
+}  
   
-/*数值*/
-.stepper input { 
-  width: 35%; 
-  height: 100%; 
-  float: left; 
-  margin: 0 auto; 
-  text-align: center; 
-  font-size: 10px; 
-  /*给中间的input设置左右边框即可*/
-  border-left: 1px solid #ccc; 
-  border-right: 1px solid #ccc; 
-} 
+/*数值*/  
+.stepper input {  
+    width: 4vh;  
+    height: 5vh;
+    float: left;  
+    margin: 0 auto;  
+    text-align: center;  
+    font-size: 12px;  
+    /*给中间的input设置左右边框即可*/  
+    border-left: 1px solid #ccc;  
+    border-right: 1px solid #ccc;  
+}  
   
-/*普通样式*/
-.stepper .normal{ 
-  margin-bottom: 3px;
-  color: black; 
+/*普通样式*/  
+.stepper .normal{  
+    color: black;  
+}  
+  
+/*禁用样式*/  
+.stepper .disabled{  
+    color: #ccc;  
 } 
 
 </style>
@@ -111,13 +147,24 @@
         <checkbox checked="{{item.check}}"></checkbox>
       </view>
       <view class="cnt" id="{{item.id}}">
-        <image src="{{item.imageUrl}}" @tap="goodDetail({{item.id}})" mode="scaleToFill"></image>
-        <view  style="flex-direction:column" class="detail">
+          <view class="image-view">
+      <image src="{{item.imageUrl}}" @tap="goodDetail({{item.id}})" mode="scaleToFill"></image>
+          </view>
+          <view class="detail-cnt">
+      <view class="detail" style="width:12vh;">
+          <view style="margin-top: 0.5vh;margin-left:1vh">
           <text class="name" @tap="goodDetail({{item.id}})">{{item.name}}</text>
-          <text class="description" @tap="goodDetail({{item.id}})">{{item.descript}}</text>
-          <view style="margin-top:-3px">
-             <text class="singleTotalPrice">￥{{item.price * item.piece}}</text>
-             <view class="counter">
+           <text class="description" @tap="goodDetail({{item.id}})">{{item.descript}}</text>
+          </view>
+        </view>
+      <view class="detail">
+        <view style="margin-top: 1vh;margin-left:2vh;">
+          <text class="singleTotalPrice">￥{{item.price * item.piece}}</text>
+        </view>
+      </view>
+          </view>
+
+        <view class="counter">
                 <view class="stepper"> 
                     <!-- 加号 -->
                   <text class="normal" bindtap="bindPlus">+</text> 
@@ -126,12 +173,12 @@
                   <!-- 减号 -->
                   <text class="normal" bindtap="bindMinus">-</text> 
                 </view> 
-             </view>
-          </view>
-        </view>
+         </view>
+
       </view>
-     
+  
     </view>
+    <view class="space-div"></view>
 </template>
 
 <script>
@@ -183,6 +230,9 @@
                 },
                 bindManual(e){
                   var val = e.detail.value;
+                  if(val < 0){
+                    val = 0;
+                  }
                   this.item.piece = val;
                   this.$apply();
                   this.$parent.$apply();
