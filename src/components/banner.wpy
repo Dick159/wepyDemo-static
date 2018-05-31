@@ -6,6 +6,7 @@
 }
 
 .Banner-img{
+  height:30vh;
 }
 
 .swiper-box .wx-swiper-dots.wx-swiper-dots-horizontal{
@@ -46,6 +47,7 @@
 
 <script>
   import wepy from 'wepy'
+  import imageUtil from '../utils/ImageUtils.js'
 
   export default class Banner extends wepy.component {
     data = {  
@@ -61,10 +63,15 @@
     props={
        heightFactor:String
     };
-    
+
     methods = {
-      imageLoad (e) {    
-         
+      imageLoad (e) { 
+       var query = wx.createSelectorQuery()
+        wx.createSelectorQuery().select('.swiper-box').boundingClientRect(function(rect){
+            var width = rect.width   // 节点的宽度
+            var height = rect.height  // 节点的高度
+            imageUtil.imageUtil2(e,width,height);
+        }).exec()
       },
 
       tap (url,type){

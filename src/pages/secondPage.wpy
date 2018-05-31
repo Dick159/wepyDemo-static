@@ -384,9 +384,9 @@
       var that = this
       that.clearBanner()
       that.bannerList = [
-      {bannerURL:'',navigateWay:'0',bannerIcon:'../images/banner_view_1.jpg'},
-      {bannerURL:'',navigateWay:'0',bannerIcon:'../images/banner_view_2.jpg'},
-      {bannerURL:'',navigateWay:'0',bannerIcon:'../images/banner_view_3.jpg'}];
+      {bannerURL:'1',navigateWay:'1',bannerIcon:'../images/banner1.jpg'},
+      {bannerURL:'2',navigateWay:'1',bannerIcon:'../images/banner2.jpg'},
+      {bannerURL:'3',navigateWay:'1',bannerIcon:'../images/banner3.jpg'}];
        for(var i =0;i<that.bannerList.length;i++){
                   that.$invoke('banner', 'add', that.bannerList[i]);
         }

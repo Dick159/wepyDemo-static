@@ -270,10 +270,18 @@
           })
         },
         contactUs(){
-
+          wx.showToast({
+            title: '联系客服',
+            icon: 'success',
+            duration: 2000
+          });
         },
         aboutUs(){
-
+        wx.showToast({
+            title: '关于我们',
+            icon: 'success',
+            duration: 2000
+          });
         },
         nickName(){
           var that = this
