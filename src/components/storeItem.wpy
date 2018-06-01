@@ -167,9 +167,11 @@
            }
 
 
-           onLoad(){
+           onLoad(option){
               var that = this
-            // 根据商家ID获取该商家排前三的商品
+              var id = option.id
+
+               // 根据商家ID获取该商家排前三的商品
             /*
             var id = that.ID;
             var baseUrl = that.$parent.baseUrl;

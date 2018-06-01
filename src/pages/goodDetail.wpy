@@ -65,11 +65,11 @@ swiper-item image {
   height: 90rpx;
 }
 .button-toCar {
-  background-color: #008800;  
+  background-color: #ca4c71; 
   display: inline-block;
 }
 .button-toBuy {
-  background-color: #FF6633;  
+  background-color: #cf1a4f;  
   display: inline-block;
 }
 .image_detail {
@@ -124,6 +124,9 @@ text {
   margin-top: 9px;
   font-size: 17px;
 }
+.goodInfo{
+  width: 100%;
+}
 </style>
 
 <template>
@@ -150,7 +153,12 @@ text {
   <!-- sku选择 -->
   <!-- <text>商品评价</text>
   <text class="text-remark">东西还可以，好评~</text> -->
-  <text style="margin-top:10px;margin-left:5px;font-size:16px;display:block">商品详情</text>
+  <scroll-view scroll-y>
+    <text style="margin-top:10px;margin-left:5px;font-size:16px;display:block">商品详情</text>
+    <view>
+      <image class="goodInfo" src="../images/goodInfo.jpg" mode="widthFix" style="width:100%;">
+    </view>
+  </scroll-view>
   <view >
     <text class="descript">{{goodItem.descript}}</text>
     <block wx:for-items="{{detailImg}}" wx:key="name">
@@ -160,7 +168,7 @@ text {
 </scroll-view>
 <!-- 底部悬浮栏 -->
 <view class="detail-nav">
-  <image class="toStore" @tap="toStore({{item.creatorId}})" src="../../icon/indexPage.jpg" />
+  <image class="toStore" @tap="toStore({{goodItem.creatorId}})" src="../../icon/shop.png" />
   <button class="button-toCar" @tap="addCar">加入购物车</button>
   <button class="button-toBuy" @tap="immeBuy">立即购买</button>
 </view>
@@ -276,9 +284,9 @@ text {
           });
       },
       toStore(id){
-        wx.switchTab({
-            url: '../pages/storeDetail?storeId='+id
-          })
+        wx.navigateTo({
+                       url: 'storeDetail?id='+id
+                   })
       }
     }
 
@@ -309,31 +317,31 @@ text {
         );
     */
       if(id=='1'){
-          that.goodItem = {id:'1',name:'两只小熊',price:'688.00',sold:'10',unit:'89',descript:'两只小熊'};
+          that.goodItem = {id:'1',name:'两只小熊',price:'688.00',sold:'10',unit:'89',descript:'两只小熊',creatorId:'1'};
           that.imgUrls.push('../images/goods/2/1.jpg');
       }else if(id=='2'){
-          that.goodItem = {id:'2',name:'人体单车',price:'899.00',sold:'8',unit:'1',descript:'人体单车'};
+          that.goodItem = {id:'2',name:'人体单车',price:'899.00',sold:'8',unit:'1',descript:'人体单车',creatorId:'1'};
           that.imgUrls.push('../images/goods/2/3.jpg');
       }else if(id=='3'){
-          that.goodItem = {id:'3',name:'抱枕',price:'88.00',sold:'363',unit:'783',descript:'抱枕'};
+          that.goodItem = {id:'3',name:'抱枕',price:'88.00',sold:'363',unit:'783',descript:'抱枕',creatorId:'1'};
           that.imgUrls.push('../images/goods/3/2.jpg');
       }else if(id=='4'){
-          that.goodItem = {id:'4',name:'蒲扇',price:'68.00',sold:'223',unit:'324',descript:'蒲扇'};
+          that.goodItem = {id:'4',name:'蒲扇',price:'68.00',sold:'223',unit:'324',descript:'蒲扇',creatorId:'1'};
           that.imgUrls.push('../images/goods/3/3.jpg');
       }else if(id=='5'){
-          that.goodItem = {id:'5',name:'地毯',price:'288.00',sold:'252',unit:'334',descript:'地毯'};
+          that.goodItem = {id:'5',name:'地毯',price:'288.00',sold:'252',unit:'334',descript:'地毯',creatorId:'2'};
           that.imgUrls.push('../images/goods/3/4.jpg');
       }else if(id=='6'){
-          that.goodItem = {id:'6',name:'菊花',price:'122.00',sold:'187',unit:'233',descript:'菊花'};
+          that.goodItem = {id:'6',name:'菊花',price:'122.00',sold:'187',unit:'233',descript:'菊花',creatorId:'2'};
           that.imgUrls.push('../images/goods/1/1.jpg');
       }else if(id=='7'){
-          that.goodItem = {id:'7',name:'荷花',price:'188.00',sold:'222',unit:'211',descript:'荷花'};
+          that.goodItem = {id:'7',name:'荷花',price:'188.00',sold:'222',unit:'211',descript:'荷花',creatorId:'2'};
           that.imgUrls.push('../images/goods/1/2.jpg');
       }else if(id=='8'){
-          that.goodItem = {id:'8',name:'字画',price:'368.00',sold:'45',unit:'543',descript:'字画'};
+          that.goodItem = {id:'8',name:'字画',price:'368.00',sold:'45',unit:'543',descript:'字画',creatorId:'3'};
           that.imgUrls.push('../images/goods/1/3.jpg');
       } else if(id=='9'){
-          that.goodItem = {id:'9',name:'梅花',price:'180.00',sold:'65',unit:'836',descript:'梅花'};
+          that.goodItem = {id:'9',name:'梅花',price:'180.00',sold:'65',unit:'836',descript:'梅花',creatorId:'3'};
           that.imgUrls.push('../images/goods/1/4.jpg');
       } 
       that.$apply();
