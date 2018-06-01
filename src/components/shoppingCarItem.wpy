@@ -2,17 +2,20 @@
 .container {
 } 
 .goodItem{
-  height: 20vh;
+  height: 13vh;
   width: 100%;
   background-color: #FFFFFF;
-  margin-top: 10px;
+  margin-top: 1vh;
   border-bottom: 1px solid #E4E4E4;
   display: flex;
 }
 .cb{
   display:inline-block;
-  margin-top:30px;
-  margin-left:5px;
+  margin-top:3vh;
+  margin-left:1vw;
+  -moz-transform:scale(1,1); 
+ -webkit-transform:scale(1,1); 
+ -o-transform:scale(1,1); 
 }
 .cb checkbox{
   display:inline-block;
@@ -21,7 +24,6 @@
   display:inline-block;
   vertical-align:middle;
   height:100%;
-  width:100%;
 }
 
 .singleTotalPrice{
@@ -34,13 +36,13 @@
 .image-view{
   display: inline-block;
   width:18vh;
-  height:20vh;
+  height:11vh;
   margin-left:5px;
 }
 
 .cnt image{
   display:inline-block;
-  width: 100%;
+  width: 80%;
   height:80%;
   margin-bottom: 3vh;
   border:1px solid #E4E4E4;
@@ -53,7 +55,7 @@
 }
 .name{
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .description{
@@ -63,22 +65,9 @@
 }
 
 .detail{
-  display:inline-block;
-  height:100%;
+  display:block;
+  height:47%;
 }
-.detail text{
-  display: flex;
-}
-
-.detail view{
-  float:left;
-}
-
-.detail-cnt {
-  display: inline-block;
-  height:100%;
-}
-
 .space-div{
   width:100%;
   height:3px;
@@ -93,7 +82,6 @@
 
 .counter{
   float:right;
-  margin-top:14vh;
 }
 
 /*主容器*/  
@@ -127,6 +115,7 @@
     /*给中间的input设置左右边框即可*/  
     border-left: 1px solid #ccc;  
     border-right: 1px solid #ccc;  
+
 }  
   
 /*普通样式*/  
@@ -150,20 +139,23 @@
           <view class="image-view">
       <image src="{{item.imageUrl}}" @tap="goodDetail({{item.id}})" mode="scaleToFill"></image>
           </view>
-          <view class="detail-cnt">
-      <view class="detail" style="width:12vh;">
-          <view style="margin-top: 0.5vh;margin-left:1vh">
-          <text class="name" @tap="goodDetail({{item.id}})">{{item.name}}</text>
-           <text class="description" @tap="goodDetail({{item.id}})">{{item.descript}}</text>
+      </view>  
+          <view class="detail-cnt" style="flex-direction:column;">
+            <view class="detail">
+                <view style="margin-top: 0.5vh;margin-left:1vh">
+                <text class="name" @tap="goodDetail({{item.id}})">{{item.name}}</text>
+                 <view class="description">
+                 <text  @tap="goodDetail({{item.id}})">{{item.descript}}</text>
+                </view>
+                </view>
+              </view>
           </view>
-        </view>
-      <view class="detail">
-        <view style="margin-top: 1vh;margin-left:2vh;">
-          <text class="singleTotalPrice">￥{{item.price * item.piece}}</text>
-        </view>
-      </view>
-          </view>
-
+        <view style="flex-direction:column;">
+         <view class="detail">
+              <view style="margin-top: 1vh;text-align: center;">
+                <text class="singleTotalPrice">￥{{item.price * item.piece}}</text>
+              </view>
+            </view>
         <view class="counter">
                 <view class="stepper"> 
                     <!-- 加号 -->
@@ -174,8 +166,8 @@
                   <text class="normal" bindtap="bindMinus">-</text> 
                 </view> 
          </view>
-
-      </view>
+        </view>
+     
   
     </view>
     <view class="space-div"></view>

@@ -86,7 +86,9 @@ page{
 <template>
 <view class="container">  
          <view class="top">
-              <image src="../images/banner_view_2.jpg"  mode="scaleToFill" style="height:100%;width:100%;"></image>
+              <image src="../images/guanggao.jpg"  mode="scaleToFill" style="height:100%;width:100%;"></image>
+         </view>
+         <view >
          </view>
         <view class="goods">
           <repeat for="{{list}}" key="index" index="index" item="item">
@@ -199,8 +201,8 @@ page{
       var that = this
       that.list = []
       var good1 = 
-      {id:'1',imageUrl:'../images/goods/2/1.jpg',name:'两只小熊',price:'688.00',piece:1,descript:'两只小熊'};
-      var good2 = {id:'3',imageUrl:'../images/goods/3/2.jpg',name:'抱枕',price:'88.00',piece:1,descript:'抱枕'};
+      {id:'1',imageUrl:'../images/goods/2/1.jpg',name:'两只小熊',price:'688.00',piece:1,descript:'两只小熊,我们一起来数一数,121212121,两只小熊~'};
+      var good2 = {id:'3',imageUrl:'../images/goods/3/2.jpg',name:'抱枕',price:'88.00',piece:1,descript:'抱枕,舒服抱枕,舒服到不行了.专治颈椎,活血去腐'};
       that.list.push(good1);
       that.list.push(good2);
       console.log(that.list);

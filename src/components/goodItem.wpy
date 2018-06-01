@@ -68,7 +68,7 @@
                 tap(e){
                     let id = e.currentTarget.id;
                     wx.navigateTo({
-                       url: 'goodDetail?id=' + id
+                       url: 'goodDetail?id='+id
                      })
                 }
            }
