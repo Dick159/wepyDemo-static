@@ -1,6 +1,6 @@
 <style>
 .cnt{
-  width:49%;
+  width:364rpx;
   text-align: center;
   background-color: transparent;
   margin-top:15rpx;
@@ -8,39 +8,44 @@
 }
 
 .description{
- display: block;
-  font-size: 25rpx;
-  line-height: 25rpx;
+  display: block;
+  font-size: 22rpx;
+  line-height: 22rpx;
   color:#000;
   text-align: left;
 }
 
 .cnt text{
-    margin-left:20rpx;
+    margin-left:1vh;
 }
 
 .price{
-    font-size: 30rpx;
-    color:#f40;
+    font-size: 25rpx;
+    color:#ed1626;
     display: block;
     text-align: right;
-    margin-right:10px;
+    margin-right:1vh;
 }
 
 .cnt image{
-  width:100%;
-  height:350rpx;
+  width:364rpx;
+  height:364rpx;
   background-color:transparent;
 }
 .price-view{
   text-align: right;
+}
+.gd-desc-cnt{
+  margin-top:1vh;
 }
 </style>
 
 <template>
     <view @tap="tap" class="cnt" id="{{item.id}}">
       <image src="{{item.imageUrl}}"  mode="aspectFill"></image>
+      <view class="gd-desc-cnt">
       <text class="description">{{item.name}}</text>
+    </view>
       <view class="price-view">
       <text class="price">￥{{item.price}}</text>
     </view>
