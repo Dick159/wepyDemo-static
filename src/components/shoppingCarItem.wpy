@@ -1,13 +1,28 @@
 <style>
 .container {
 } 
+.store{
+   flex-direction:row;
+
+}
+.storeTitle{
+  border-top: 1px solid #E4E4E4; 
+  border-left: 1px solid #E4E4E4;
+  border-right: 1px solid #E4E4E4;
+  margin-top:1vh;
+  border-radius: 3px;
+  width:100%;
+}
 .goodItem{
-  height: 13vh;
+  height: 15vh;
   width: 100%;
   background-color: #FFFFFF;
-  margin-top: 1vh;
-  border-bottom: 1px solid #E4E4E4;
+  /*border-bottom: 1px solid #E4E4E4;*/
+  border-top: 1px solid #E4E4E4;
+  border-left: 1px solid #E4E4E4;
+  border-right: 1px solid #E4E4E4;
   display: flex;
+  
 }
 .cb{
   display:inline-block;
@@ -19,6 +34,7 @@
 }
 .cb checkbox{
   display:inline-block;
+
 }
 .cnt{
   display:inline-block;
@@ -37,7 +53,8 @@
   display: inline-block;
   width:18vh;
   height:11vh;
-  margin-left:5px;
+  margin-left:1vw;
+  margin-top:1vh;
 }
 
 .cnt image{
@@ -59,7 +76,7 @@
 }
 
 .description{
-  font-size: 12px;
+  font-size: 10px;
   color: #9c9c9c;
   opacity: 0.7;
 }
@@ -131,6 +148,11 @@
 </style>
 
 <template>
+  <view class="store">
+    <!-- <view class="storeTitle">
+      <view></view>
+      <text style="margin-top:1vh;margin-left:2vw;">{{item.storeName}}</text> 
+    </view> -->
     <view class="goodItem" style="flex-direction:row;">
       <view class="cb" @tap="checkChange">
         <checkbox checked="{{item.check}}"></checkbox>
@@ -145,7 +167,7 @@
                 <view style="margin-top: 0.5vh;margin-left:1vh">
                 <text class="name" @tap="goodDetail({{item.id}})">{{item.name}}</text>
                  <view class="description">
-                 <text  @tap="goodDetail({{item.id}})">{{item.descript}}</text>
+                  <text  @tap="goodDetail({{item.id}})">{{item.descript}}</text>
                 </view>
                 </view>
               </view>
@@ -170,6 +192,7 @@
      
   
     </view>
+  </view>
     <view class="space-div"></view>
 </template>
 

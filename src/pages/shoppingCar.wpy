@@ -1,6 +1,6 @@
 <style>
 page{
-   background-color: #FFFFFF;
+   background-color: #f4f4f4;
 }
 .top{
   height:12vh;
@@ -80,7 +80,8 @@ page{
     border-radius: 2px;
 } 
 .goods{
-  width:100%;
+  width:98%;
+  border-radius: 5px;
 }
 </style>
 <template>
@@ -201,8 +202,8 @@ page{
       var that = this
       that.list = []
       var good1 = 
-      {id:'1',imageUrl:'../images/goods/2/1.jpg',name:'两只小熊',price:'688.00',piece:1,descript:'两只小熊,我们一起来数一数,121212121,两只小熊~'};
-      var good2 = {id:'3',imageUrl:'../images/goods/3/2.jpg',name:'抱枕',price:'88.00',piece:1,descript:'抱枕,舒服抱枕,舒服到不行了.专治颈椎,活血去腐'};
+      {id:'1',imageUrl:'../images/goods/2/1.jpg',name:'两只小熊',price:'688.00',piece:1,descript:'两只小熊,我们一起来数一数,121212121,两只小熊~',storeName:'小熊之家'};
+      var good2 = {id:'3',imageUrl:'../images/goods/3/2.jpg',name:'抱枕',price:'88.00',piece:1,descript:'抱枕,舒服抱枕,舒服到不行了.专治颈椎,活血去腐',storeName:'抱枕专卖店'};
       that.list.push(good1);
       that.list.push(good2);
       console.log(that.list);
