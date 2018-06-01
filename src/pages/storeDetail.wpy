@@ -146,7 +146,7 @@
   </view>
   <view class="space-div"></view>
   <view class="descript" id="storeBannerCnt">
-    <image  src="../images/banner_view_3.jpg" style="width:{{imageWidth}}px;height:{{imageHeight}}px"  mode="aspectFill" @load="storeBannerLoad"></image>
+    <image  src="../images/background.jpg" style="width:{{imageWidth}}px;height:{{imageHeight}}px"  mode="aspectFill" @load="storeBannerLoad"></image>
   </view>
 
   <view class="middle-body">
