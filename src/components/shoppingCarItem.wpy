@@ -6,19 +6,23 @@
 
 }
 .storeTitle{
+  flex-direction:row;
+  display: flex;
   border-top: 1px solid #E4E4E4; 
   border-left: 1px solid #E4E4E4;
   border-right: 1px solid #E4E4E4;
+  border-bottom: 1px solid white;
   margin-top:1vh;
   border-radius: 3px;
   width:100%;
+
 }
 .goodItem{
   height: 15vh;
   width: 100%;
-  background-color: #FFFFFF;
+  background-color: #f9f9f9;
   /*border-bottom: 1px solid #E4E4E4;*/
-  border-top: 1px solid #E4E4E4;
+  /*border-top: 1px solid #E4E4E4;*/
   border-left: 1px solid #E4E4E4;
   border-right: 1px solid #E4E4E4;
   display: flex;
@@ -51,10 +55,10 @@
 
 .image-view{
   display: inline-block;
-  width:18vh;
+  width:11vh;
   height:11vh;
   margin-left:1vw;
-  margin-top:1vh;
+  margin-top:1.5vh;
 }
 
 .cnt image{
@@ -87,14 +91,14 @@
 }
 .space-div{
   width:100%;
-  height:3px;
+  height:0.5vw;
   background-color:#f4f4f4;
 }
 
 .singelPiece{
   font-size: 12px;
   display: inline-block;
-  margin-left:30px;
+  margin-left:5vw;
 }
 
 .counter{
@@ -109,7 +113,7 @@
     border: 1px solid #ccc;  
     border-radius: 3px;  
     float:right;
-    margin-right: 5px;
+    margin-right: 1vw;
 }  
   
 /*加号和减号*/  
@@ -149,13 +153,15 @@
 
 <template>
   <view class="store">
-    <!-- <view class="storeTitle">
-      <view></view>
-      <text style="margin-top:1vh;margin-left:2vw;">{{item.storeName}}</text> 
-    </view> -->
+    <view class="storeTitle" >
+        <image style="width:8vw;height:5vh;margin-left:1vw;" src="{{item.storeLogo}}"  mode="scaleToFill"/>
+     <view> 
+       <text style="margin-top:1vh;margin-left:2vw;font-size:18px;">{{item.storeName}}</text> 
+      </view>
+    </view>
     <view class="goodItem" style="flex-direction:row;">
       <view class="cb" @tap="checkChange">
-        <checkbox checked="{{item.check}}"></checkbox>
+        <radio checked="{{item.check}}"></radio>
       </view>
       <view class="cnt" id="{{item.id}}">
           <view class="image-view">
