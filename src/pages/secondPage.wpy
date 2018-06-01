@@ -55,7 +55,7 @@
     text-align: left;
     font-size:30rpx;
     font-weight: 400;
-    line-height: 100rpx;
+    line-height: 6vh;
 }
 
 .text-cnt{
@@ -65,9 +65,7 @@
 .middle-body{
   width: 100%;
 }
-.title-cnt{
-  width:100%;
-}
+
 .hidden{
   display:none;
 /*  text-align:center;
@@ -75,24 +73,23 @@
 }
  .bc_white{
   width:100%;
-  height:8vh;
+  height:6vh;
   display:flex;
   flex-direction:row;
   background-color:white;
 }
 .default{
-
   text-align:center;
   flex:1;
   color:#c4c4c4;
-  font-size:28rpx;
+  font-size:25rpx;
   border-bottom:0.5vh solid #fff;
 }
 .red{
   text-align:center;
   color:#000;
   flex:1;
-  font-size:28rpx;
+  font-size:25rpx;
   border-bottom:0.5vh solid #fc5558;
 }
 .space-div{
@@ -130,8 +127,8 @@
     <view class="title-cnt">
      <!-- <text class="text-cnt">{{pText}}</text> -->
     <view class="bc_white">
-      <view class="{{goodFlag?'red':'default'}}" @tap="goodFlagSelect">精品商品</view>
-      <view class="{{storeFlag?'red':'default'}}" @tap="storeFlagSelect">精品商家</view>
+      <view class="{{goodFlag?'red':'default'}}" @tap="goodFlagSelect"><text>精品商品</text></view>
+      <view class="{{storeFlag?'red':'default'}}" @tap="storeFlagSelect"><text>精品商家</text></view>
     </view>
     </view>
 

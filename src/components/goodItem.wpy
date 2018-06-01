@@ -1,6 +1,6 @@
 <style>
 .cnt{
-  width:364rpx;
+  width:49vw;
   text-align: center;
   background-color: transparent;
   margin-top:15rpx;
@@ -20,7 +20,7 @@
 }
 
 .price{
-    font-size: 25rpx;
+    font-size: 3.5vw;
     color:#ed1626;
     display: block;
     text-align: right;
@@ -28,8 +28,8 @@
 }
 
 .cnt image{
-  width:364rpx;
-  height:364rpx;
+  width:49vw;
+  height:49vw;
   background-color:transparent;
 }
 .price-view{

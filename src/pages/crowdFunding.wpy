@@ -17,8 +17,8 @@ page {
   background-color: white;
 }
 .itemImg image{
-  height:16vh;
-  width:34vw;
+  height:20vh;
+  width:20vh;
   margin:3vh;
   margin-top:2vh;
   margin-left:3vw;
@@ -39,12 +39,12 @@ page {
   margin-top:2vh;
 }
 .name{
-  font-size:20px;
+  font-size:15px;
   text-align: left;
 }
 .desp{
   margin-top: 1vh;
-  font-size:16px;
+  font-size:14px;
   color:gray;
   text-align: left;
 }
@@ -57,7 +57,6 @@ page {
   border-top-left-radius:5px;
 }
 .price{
-  
   width:45vw;
 }
 .hadCrowd{
@@ -70,14 +69,14 @@ page {
 .num{
   width:25vw;
   text-align:center;
-  font-size:18px;
+  font-size:15px;
   display:flex;
   flex-direction:column;
 }
 .progressInfo{
   width:25vw;
   text-align:center;
-  font-size:18px;
+  font-size:15px;
   display:flex;
   flex-direction:column;
 }
@@ -90,6 +89,7 @@ page {
 </style>
 
 <template>
+  <scroll-view scroll-y="true">
        <view class="item">
         <view class="up">
           <view class="itemImg">
@@ -103,7 +103,7 @@ page {
         </view>
         <view class="down">
           <view class="price">
-            <view style="font-size:24px;color:red;text-align: center;">
+            <view style="font-size:40rpx;color:red;text-align: center;">
               <text>￥8888.00</text>
             </view>
             <view style="font-size:11px;text-align:center;color:gray;"><text>剩余时间:15小时12分钟
@@ -111,20 +111,24 @@ page {
             </view>
           </view>
           <view class="hadCrowd">
-            <view style="text-align:center;font-size:18px;"><text>已筹到</text></view>  
+            <view style="text-align:center;font-size:15px;"><text>已筹到</text></view>  
             <view style="text-align:center;font-size:15px;"><text>￥3398.00</text></view>
           </view>
           <view class="num">
-            <view style="text-align:center;font-size:18px;"><text>人数</text></view>  
+            <view style="text-align:center;font-size:15px;"><text>人数</text></view>  
             <view style="text-align:center;font-size:15px;"><text>18</text></view>
           </view>
           <view class="progressInfo">
-            <view style="text-align:center;font-size:18px;"><text>进度</text></view>  
+            <view style="text-align:center;font-size:15px;"><text>进度</text></view>  
             <view style="text-align:center;font-size:15px;"><text>38</text></view>
           </view>
         </view>
         <view class="space-div"></view>
       </view>
+
+
+
+
 
     <view class="item">
             <view class="up">
@@ -139,7 +143,7 @@ page {
             </view>
             <view class="down">
               <view class="price">
-                <view style="font-size:24px;color:red;text-align: center;">
+                <view style="font-size:40rpx;color:red;text-align: center;">
                   <text>￥68000.00</text>
                 </view>
                 <view style="font-size:11px;text-align:center;color:gray;"><text>剩余时间:12天15小时12分钟
@@ -147,20 +151,68 @@ page {
                 </view>
               </view>
               <view class="hadCrowd">
-                <view style="text-align:center;font-size:18px;"><text>已筹到</text></view>  
+                <view style="text-align:center;font-size:15px;"><text>已筹到</text></view>  
                 <view style="text-align:center;font-size:15px;"><text>￥46240.00</text></view>
               </view>
               <view class="num">
-                <view style="text-align:center;font-size:18px;"><text>人数</text></view>  
+                <view style="text-align:center;font-size:15px;"><text>人数</text></view>  
                 <view style="text-align:center;font-size:15px;"><text>82</text></view>
               </view>
               <view class="progressInfo">
-                <view style="text-align:center;font-size:18px;"><text>进度</text></view>  
+                <view style="text-align:center;font-size:15px;"><text>进度</text></view>  
                 <view style="text-align:center;font-size:15px;"><text>68</text></view>
               </view>
             </view>
             <view class="space-div"></view>
           </view>
+
+
+            <view class="item">
+        <view class="up">
+          <view class="itemImg">
+                <image  src="../images/goods/4/1.jpg"  mode="scaleToFill"></image>
+          </view>
+          <view class="infoDetail">
+                <view class="name"><text>众筹商品</text></view>
+                <view class="desp"><text>众筹商品简介简介简介简介简介简介简介简介简介简介简介简介简介简介</text></view>
+                <view class="progress"><progress percent="38" active color="pink"/></view>
+          </view>
+        </view>
+        <view class="down">
+          <view class="price">
+            <view style="font-size:40rpx;color:red;text-align: center;">
+              <text>￥8888.00</text>
+            </view>
+            <view style="font-size:11px;text-align:center;color:gray;"><text>剩余时间:15小时12分钟
+            </text>
+            </view>
+          </view>
+          <view class="hadCrowd">
+            <view style="text-align:center;font-size:15px;"><text>已筹到</text></view>  
+            <view style="text-align:center;font-size:15px;"><text>￥3398.00</text></view>
+          </view>
+          <view class="num">
+            <view style="text-align:center;font-size:15px;"><text>人数</text></view>  
+            <view style="text-align:center;font-size:15px;"><text>18</text></view>
+          </view>
+          <view class="progressInfo">
+            <view style="text-align:center;font-size:15px;"><text>进度</text></view>  
+            <view style="text-align:center;font-size:15px;"><text>38</text></view>
+          </view>
+        </view>
+        <view class="space-div"></view>
+      </view>
+
+
+
+
+
+
+
+
+
+     </scroll-view>
+
 </template>
 
 

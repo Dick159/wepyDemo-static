@@ -2,7 +2,7 @@
     
 .swiper-box{
     width:100%;
-    height:30vh;
+    height:26vh;
 }
 
 .Banner-img{
@@ -37,7 +37,7 @@
   <block wx:for="{{dataList}}">  
   <swiper-item class="banner">  
     <image @load="imageLoad" @tap="tap({{item.bannerURL}},{{item.navigateWay}})" class='Banner-img' src="{{item.bannerIcon}}" 
-    style="width:{{imageWidth}}px;height:{{imageHeight}}px"  mode="scaleToFill" />  
+    style="width:100%;height:100%;"  mode="scaleToFill" />  
   </swiper-item>  
   </block>  
 </swiper>
@@ -66,7 +66,7 @@
 
     methods = {
       imageLoad (e) { 
-        var that = this
+/*        var that = this
         var query = wx.createSelectorQuery();
         query.select('#swiper-cnt').boundingClientRect();
         query.exec(function (res) {
@@ -75,7 +75,7 @@
              that.imageHeight = imageSize.imageHeight;
              that.$apply();
         });
-        this.$apply();
+        this.$apply();*/
       },
 
       tap (url,type){
