@@ -34,7 +34,8 @@ export default class extends wepy.app {
       'pages/commonProplem',
       'pages/storeDetail',
       'pages/category',
-      'pages/manageAddress'
+      'pages/manageAddress',
+      'pages/crowdFunding'
     ],
     window: {
     backgroundTextStyle:'light',

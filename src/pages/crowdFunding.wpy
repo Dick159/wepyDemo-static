@@ -1,0 +1,201 @@
+<style lang=less>
+page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #F2f2f2;
+}
+.item{
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction:column;
+  justify-content: space-between;
+  -webkit-justify-content :space-between;
+  width:96%;
+  margin-left:2%;
+  margin-top:2vh;
+  background-color: white;
+}
+.itemImg image{
+  height:16vh;
+  width:34vw;
+  margin:3vh;
+  margin-top:2vh;
+  margin-left:3vw;
+  display: block;
+}
+.up{
+  display:flex;
+  flex-direction:row;
+}
+.down{
+   display:flex;
+  flex-direction:row;
+}
+.infoDetail{
+  display:flex;
+  flex-direction:column; 
+  margin-left:1vw;
+  margin-top:2vh;
+}
+.name{
+  font-size:20px;
+  text-align: left;
+}
+.desp{
+  margin-top: 1vh;
+  font-size:16px;
+  color:gray;
+  text-align: left;
+}
+.progress{
+  margin-top: 2vh;
+  width:95%;
+  border-bottom-left-radius:5px;
+  border-top-left-radius:5px; 
+  border-bottom-left-radius:5px; 
+  border-top-left-radius:5px;
+}
+.price{
+  
+  width:45vw;
+}
+.hadCrowd{
+  margin-left: 3vw;
+  width:25vw;
+  display:flex;
+  flex-direction:column;
+  color:#C94E71;
+}
+.num{
+  width:25vw;
+  text-align:center;
+  font-size:18px;
+  display:flex;
+  flex-direction:column;
+}
+.progressInfo{
+  width:25vw;
+  text-align:center;
+  font-size:18px;
+  display:flex;
+  flex-direction:column;
+}
+.space-div{
+  width:100%;
+  height:3vh;
+  background-color:white;
+}
+
+</style>
+
+<template>
+       <view class="item">
+        <view class="up">
+          <view class="itemImg">
+                <image  src="../images/goods/4/1.jpg"  mode="scaleToFill"></image>
+          </view>
+          <view class="infoDetail">
+                <view class="name"><text>众筹商品</text></view>
+                <view class="desp"><text>众筹商品简介简介简介简介简介简介简介简介简介简介简介简介简介简介</text></view>
+                <view class="progress"><progress percent="38" active color="pink"/></view>
+          </view>
+        </view>
+        <view class="down">
+          <view class="price">
+            <view style="font-size:24px;color:red;text-align: center;">
+              <text>￥8888.00</text>
+            </view>
+            <view style="font-size:11px;text-align:center;color:gray;"><text>剩余时间:15小时12分钟
+            </text>
+            </view>
+          </view>
+          <view class="hadCrowd">
+            <view style="text-align:center;font-size:18px;"><text>已筹到</text></view>  
+            <view style="text-align:center;font-size:15px;"><text>￥3398.00</text></view>
+          </view>
+          <view class="num">
+            <view style="text-align:center;font-size:18px;"><text>人数</text></view>  
+            <view style="text-align:center;font-size:15px;"><text>18</text></view>
+          </view>
+          <view class="progressInfo">
+            <view style="text-align:center;font-size:18px;"><text>进度</text></view>  
+            <view style="text-align:center;font-size:15px;"><text>38</text></view>
+          </view>
+        </view>
+        <view class="space-div"></view>
+      </view>
+
+    <view class="item">
+            <view class="up">
+              <view class="itemImg">
+                    <image  src="../images/goods/4/2.jpg"  mode="scaleToFill"></image>
+              </view>
+              <view class="infoDetail">
+                    <view class="name"><text>众筹商品2</text></view>
+                    <view class="desp"><text>众筹商品2简介简介简介简介简介简介简介简介简介简介简介简介简介简介</text></view>
+                    <view class="progress"><progress percent="38" active color="pink"/></view>
+              </view>
+            </view>
+            <view class="down">
+              <view class="price">
+                <view style="font-size:24px;color:red;text-align: center;">
+                  <text>￥68000.00</text>
+                </view>
+                <view style="font-size:11px;text-align:center;color:gray;"><text>剩余时间:12天15小时12分钟
+                </text>
+                </view>
+              </view>
+              <view class="hadCrowd">
+                <view style="text-align:center;font-size:18px;"><text>已筹到</text></view>  
+                <view style="text-align:center;font-size:15px;"><text>￥46240.00</text></view>
+              </view>
+              <view class="num">
+                <view style="text-align:center;font-size:18px;"><text>人数</text></view>  
+                <view style="text-align:center;font-size:15px;"><text>82</text></view>
+              </view>
+              <view class="progressInfo">
+                <view style="text-align:center;font-size:18px;"><text>进度</text></view>  
+                <view style="text-align:center;font-size:15px;"><text>68</text></view>
+              </view>
+            </view>
+            <view class="space-div"></view>
+          </view>
+</template>
+
+
+<script>
+  import wepy from 'wepy'
+  import imageUtil from '../utils/ImageUtils.js'
+
+  export default class CrowdFunding extends wepy.page {
+     config = {
+      navigationBarTitleText: '文创众筹'
+    }
+
+    data ={
+    }
+
+
+    methods = {
+       imageLoad (e) { 
+        var that = this
+        var query = wx.createSelectorQuery();
+        query.select('.itemImg').boundingClientRect();
+        query.exec(function (res) {
+             console.log(res);
+             var imageSize = imageUtil.imageUtil2(e,res[0].width,res[0].height);
+             that.imageWidth= res[0].width;
+             that.imageHeight = imageSize.imageHeight;
+             that.$apply();
+        });
+        this.$apply();
+      }
+    }
+
+    onLoad(){
+        
+    }
+
+  }
+</script>

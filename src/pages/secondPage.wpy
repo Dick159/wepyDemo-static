@@ -114,15 +114,15 @@
   <view class="space-div"></view>
 <view class="func-area"  >
   <view wx:for="{{categoryList}}" wx:for-key="id" wx:for-index="index">
-    <view @tap="showCategory({{item.id}})">
+    <view @tap="showCategory({{item.id}},{{item.type}})">
       <image src="{{item.categoryIcon}}" mode="aspectFill" />
       <text>{{item.categoryName}}</text>
     </view>
   </view>
   </view>
   <view class="func-area"  >
-  <view wx:for="{{categoryList}}" wx:for-key="id" wx:for-index="index">
-    <view @tap="showCategory({{item.id}})">
+  <view wx:for="{{categoryList2}}" wx:for-key="id" wx:for-index="index">
+    <view @tap="showCategory({{item.id}},{{item.type}})">
       <image src="{{item.categoryIcon}}" mode="aspectFill"  />
       <text>{{item.categoryName}}</text>
     </view>
@@ -192,15 +192,22 @@
       storeList:[],
       bannerList:[],
       categoryList:[],
+      categoryList2:[],
       storeFlag:false,
       goodFlag:true 
     }
 
     methods = {
-      showCategory(id){
+      showCategory(id,type){
+        if(type=='1'){
+            wx.navigateTo({
+                   url: 'crowdFunding'
+                })
+        }else{
          wx.navigateTo({
                    url: 'category?id=' + id
                 })
+         }
       },
       showCategoryGoods(id){
           var that = this
@@ -356,10 +363,16 @@
       getTestCategoryList(){
         var that = this
         that.categoryList = [
-        {id:'1',categoryName:'艺术设计',categoryIcon:'../icon/4_1.png'},
-        {id:'2',categoryName:'艺术家居',categoryIcon:'../icon/3_1.png'},
-        {id:'3',categoryName:'名家字画',categoryIcon:'../icon/1_1.png'},
-        {id:'4',categoryName:'全部',categoryIcon:'../icon/2_1.png'}
+        {id:'1',categoryName:'艺术设计',categoryIcon:'../icon/4_1.png',type:'0'},
+        {id:'2',categoryName:'艺术家居',categoryIcon:'../icon/3_1.png',type:'0'},
+        {id:'3',categoryName:'名家字画',categoryIcon:'../icon/1_1.png',type:'0'},
+        {id:'4',categoryName:'全部',categoryIcon:'../icon/2_1.png',type:'0'}
+        ];
+        that.categoryList2 = [
+        {id:'1',categoryName:'限时秒杀',categoryIcon:'../icon/5.png',type:'0'},
+        {id:'5',categoryName:'文创众筹',categoryIcon:'../icon/6.png',type:'1'},
+        {id:'5',categoryName:'其他',categoryIcon:'../icon/7.png',type:'0'},
+        {id:'4',categoryName:'全部',categoryIcon:'../icon/8.png',type:'0'}
         ];
          that.$apply(); 
       }

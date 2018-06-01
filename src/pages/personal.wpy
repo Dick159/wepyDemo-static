@@ -303,15 +303,17 @@
       if(userInfo==null){
         wx.getUserInfo({
           success:function(res){
-            userInfo = res.userInfo;
-            console.log(userInfo);
+             that.userInfo = res.userInfo;
+              that.logged ='true'
+             that.$apply();
+
           }
         })
+     }else{
+       that.userInfo = userInfo;
+       that.logged = logged;
+       that.$apply();
      }
-      console.log(userInfo);
-      that.userInfo = userInfo;
-      that.logged = logged;
-      that.$apply();
     };
   }
 </script>
