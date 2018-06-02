@@ -90,8 +90,8 @@ export default class extends wepy.app {
   }
 
   onLaunch() {
-    this.getUserInfo();
-    this.transmission();
+    // this.getUserInfo();
+    // this.transmission();
   }
   // 获取用户openid
   transmission(){
@@ -155,8 +155,10 @@ export default class extends wepy.app {
 
   // 获取用户基础信息，保证页面显示，所以必须sync
    getUserInfo() {
-    var logged = wx.getStorageSync('logged');
-    var userInfo = wx.getStorageSync('userInfo');
+    // var logged = wx.getStorageSync('logged');
+    // var userInfo = wx.getStorageSync('userInfo');
+    var logged = null;
+    var userInfo = null;
     var that = this
     if(logged){
     //    wx.getStorageSync("userInfo",userInfo);

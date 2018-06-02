@@ -15,8 +15,9 @@
   margin-top:1vh;
   border-radius: 3px;
   width:100%;
-
+  height:4.5vh;
 }
+
 .goodItem{
   height: 15vh;
   width: 100%;
@@ -30,11 +31,11 @@
 }
 .cb{
   display:inline-block;
-  margin-top:3vh;
+  margin-top:4vh;
   margin-left:1vw;
-  -moz-transform:scale(1,1); 
- -webkit-transform:scale(1,1); 
- -o-transform:scale(1,1); 
+  -moz-transform:scale(0.8); 
+ -webkit-transform:scale(0.8); 
+ -o-transform:scale(0.8); 
 }
 .cb checkbox{
   display:inline-block;
@@ -58,7 +59,7 @@
   width:11vh;
   height:11vh;
   margin-left:1vw;
-  margin-top:1.5vh;
+  margin-top:3vh;
 }
 
 .cnt image{
@@ -75,7 +76,7 @@
   font-size:12px;
 }
 .name{
-  font-size: 14px;
+  font-size: 10px;
   font-weight: 500;
 }
 
@@ -87,7 +88,7 @@
 
 .detail{
   display:block;
-  height:47%;
+  height:50%;
 }
 .space-div{
   width:100%;
@@ -156,7 +157,7 @@
     <view class="storeTitle" >
         <image style="width:8vw;height:5vh;margin-left:1vw;" src="{{item.storeLogo}}"  mode="scaleToFill"/>
      <view> 
-       <text style="margin-top:1vh;margin-left:2vw;font-size:18px;">{{item.storeName}}</text> 
+       <text style="line-height:4.5vh;margin-top:1vh;margin-left:2vw;font-size:2vh;">{{item.storeName}}</text> 
       </view>
     </view>
     <view class="goodItem" style="flex-direction:row;">
@@ -170,7 +171,7 @@
       </view>  
           <view class="detail-cnt" style="flex-direction:column;">
             <view class="detail">
-                <view style="margin-top: 0.5vh;margin-left:1vh">
+                <view style="margin-top: 1vh;margin-left:1vh">
                 <text class="name" @tap="goodDetail({{item.id}})">{{item.name}}</text>
                  <view class="description">
                   <text  @tap="goodDetail({{item.id}})">{{item.descript}}</text>

@@ -26,6 +26,7 @@ page{
   margin-top:1.5vh;
   font-size:14px;
   color:#c94e71;
+  line-height: 4vh;
 }
 
 .choseAll radio{
@@ -63,6 +64,7 @@ page{
 }
 .calBtn {
     float: left;
+    line-height:7vh;
 }
 .calBtn text{
     display: block;
