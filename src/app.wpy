@@ -31,7 +31,6 @@ export default class extends wepy.app {
       'pages/posterDetail',
       'pages/shoppingCar',
       'pages/myOrder',
-      'pages/commonProplem',
       'pages/storeDetail',
       'pages/category',
       'pages/manageAddress',

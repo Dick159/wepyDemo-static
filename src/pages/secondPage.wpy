@@ -24,8 +24,8 @@
 }
 
 .func-area image {
-  width: 50rpx;
-  height: 50rpx;
+  width: 45rpx;
+  height: 45rpx;
   background-color:transparent;
 }
 .goodCnt{
@@ -49,15 +49,13 @@
 
 
 .title-cnt{
-    marign-top:5px;
     background-color:#f4f4f4;
     font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
     width:100%;
     text-align: left;
     font-size:30rpx;
     font-weight: 400;
-    line-height: 100rpx;
-    height:50px;
+    line-height: 6vh;
 }
 
 .text-cnt{
@@ -67,41 +65,36 @@
 .middle-body{
   width: 100%;
 }
-.title-cnt{
-  width:100%;
-}
+
 .hidden{
   display:none;
-  text-align:center;
-  line-height:200px;
+/*  text-align:center;
+  line-height:200px;*/
 }
  .bc_white{
   width:100%;
-  height:49px;
+  height:6vh;
   display:flex;
   flex-direction:row;
   background-color:white;
 }
 .default{
-  line-height:100rpx;
   text-align:center;
   flex:1;
-  color:#000;
-  font-weight:bold;
-  font-size:28rpx;
+  color:#c4c4c4;
+  font-size:25rpx;
+  border-bottom:0.5vh solid #fff;
 }
 .red{
-  line-height:100rpx;
   text-align:center;
-  color:#fc5558;
+  color:#000;
   flex:1;
-  font-weight:bold;
-  font-size:28rpx;
-  border-bottom:2px solid #fc5558;
+  font-size:25rpx;
+  border-bottom:0.5vh solid #fc5558;
 }
 .space-div{
   width:100%;
-  height:3px;
+  height:1vh;
   background-color:#f4f4f4;
 }
 
@@ -134,10 +127,12 @@
     <view class="title-cnt">
      <!-- <text class="text-cnt">{{pText}}</text> -->
     <view class="bc_white">
-      <view class="{{goodFlag?'red':'default'}}" @tap="goodFlagSelect">精品商品</view>
-      <view class="{{storeFlag?'red':'default'}}" @tap="storeFlagSelect">精品商家</view>
+      <view class="{{goodFlag?'red':'default'}}" @tap="goodFlagSelect"><text>精品商品</text></view>
+      <view class="{{storeFlag?'red':'default'}}" @tap="storeFlagSelect"><text>精品商家</text></view>
     </view>
     </view>
+
+    <view class="space-div"></view>
 
     <view class="{{goodFlag?'goodCnt':'hidden'}}" animation="{{middBodyAnimation}}">
       <view wx:if="{{goodList == null || goodList.length == 0}}">
@@ -387,8 +382,7 @@
           {id:'5',imageUrl:'../images/goods/3/4.jpg',name:'地毯',price:'288.00'},
           {id:'6',imageUrl:'../images/goods/1/1.jpg',name:'菊花',price:'122.00'},
           {id:'7',imageUrl:'../images/goods/1/2.jpg',name:'荷花',price:'188.00'},
-          {id:'8',imageUrl:'../images/goods/1/3.jpg',name:'字画',price:'368.00'},
-          {id:'9',imageUrl:'../images/goods/1/4.jpg',name:'梅花',price:'180.00'}];
+          {id:'8',imageUrl:'../images/goods/1/3.jpg',name:'字画',price:'368.00'}];
       that.$apply();
     }
 
